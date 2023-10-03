@@ -7,12 +7,17 @@ import akka.actor.typed.ActorRef
 import akka.actor.typed.ActorSystem
 import akka.actor.typed.Behavior
 import akka.actor.typed.scaladsl.Behaviors
+import scala.concurrent.duration._
 import scala.util.Random
 import org.apache.commons.math3.filter._
 import org.apache.commons.math3.linear._
 import org.apache.commons.math3.random.{JDKRandomGenerator, RandomGenerator}
+import akka.actor.Actor
 
-final case class Measurement(realVec: ArrayRealVector)
+sealed trait EstimatorReceivable
+final case class Measurement(realVec: ArrayRealVector, replyTo: ActorRef[Estimate]) extends EstimatorReceivable
+final case object Timeout extends EstimatorReceivable
+final case class Estimate(estimate: Double)
 final case class StartGenerate()
 
 object Estimator {
@@ -46,16 +51,28 @@ object Estimator {
   val mm = new DefaultMeasurementModel(H, R)
   val filter = new KalmanFilter(pm, mm)
 
-  def apply(): Behavior[Measurement] =
-  Behaviors.setup { context =>
-    Behaviors.receiveMessage { message =>
-      filter.predict();
+  def apply(): Behavior[EstimatorReceivable] = idle()
 
-      filter.correct(message.realVec);
+  def estimating(realVec: ArrayRealVector, replyTo: ActorRef[Estimate]): Behavior[EstimatorReceivable] = Behaviors.setup { context =>
+    filter.predict();
 
-      val voltage = filter.getStateEstimation()(0)
-      context.log.info(s"Estimate: ${voltage}")
-      Behaviors.same
+    filter.correct(realVec);
+
+    val voltage = filter.getStateEstimation()(0)
+    replyTo ! Estimate(voltage)
+    Behaviors.same
+  }
+
+  def idle(): Behavior[EstimatorReceivable] = Behaviors.withTimers { timer =>
+    timer.startSingleTimer(Timeout, 5.second)
+    Behaviors.receive { (context, message) =>
+      message match {
+        case Measurement(realVec, replyTo) =>
+          estimating(realVec, replyTo)
+        case Timeout =>
+          context.log.info("Timed out...")
+          Behaviors.stopped
+      }
     }
   }
 }
@@ -65,6 +82,7 @@ object Generator {
   val constantVoltage = 10.0
   val measurementNoise = 1
   val processNoise = 1e-5
+  val numMeasurements = 10
 
   // x = [ 10 ]
   var x = new ArrayRealVector(Array(constantVoltage))
@@ -73,9 +91,14 @@ object Generator {
   val pNoise = new ArrayRealVector(Array(0.0))
   val mNoise = new ArrayRealVector(Array(0.0))
 
-  def apply(estimator: ActorRef[Measurement]): Behavior[Measurement] =
+  def apply(estimator: ActorRef[Measurement]): Behavior[Estimate] = generating(estimator, 0)
+
+  private def generating(estimator: ActorRef[Measurement], messageCounter: Int): Behavior[Estimate] =
   Behaviors.setup { context =>
-    for (i <- 1 to 15) {
+    // Randomly crash generator to test timeout
+    if (Random.nextInt() % 3 == 0 || messageCounter == numMeasurements) {
+      Behaviors.stopped
+    } else {
       // simulate the process
       pNoise.setEntry(0, processNoise * Random.nextGaussian());
 
@@ -88,10 +111,15 @@ object Generator {
       // z = H * x + m_noise
       val z = x.add(mNoise)
 
-      context.log.info(s"Sending number: ${z.getEntry(0)}")
-      estimator ! Measurement(z)
+      context.log.info(s"Sending measurement: ${z.getEntry(0)}")
+      estimator ! Measurement(z, context.self)
+      idle(estimator, messageCounter + 1)
     }
-    Behaviors.stopped
+  }
+
+  private def idle(estimator: ActorRef[Measurement], messageCounter: Int): Behavior[Estimate] = Behaviors.receive { (context, message) =>
+    context.log.info(s"Received estimate: ${message.estimate}")
+    generating(estimator, messageCounter)
   }
 }
 

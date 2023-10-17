@@ -15,13 +15,16 @@ import org.apache.commons.math3.random.{JDKRandomGenerator, RandomGenerator}
 import akka.actor.Actor
 
 sealed trait EstimatorReceivable
+final case class MyAddr(addr: ActorRef[Estimate]) extends EstimatorReceivable
 final case class Measurement(realVec: ArrayRealVector, replyTo: ActorRef[Estimate]) extends EstimatorReceivable
 final case object Timeout extends EstimatorReceivable
 final case class Estimate(estimate: Double)
 final case class StartGenerate()
 
 object Estimator {
-  // Constants
+  /*
+    Behaviour value. fixed value associated with each Estimator
+  */
   val constantVoltage = 10.0
   val measurementNoise = 1.0
   val processNoise = 1e-5
@@ -51,6 +54,13 @@ object Estimator {
   val mm = new DefaultMeasurementModel(H, R)
   val filter = new KalmanFilter(pm, mm)
 
+
+  var FellowActor: Set[ActorRef[Estimate]] = Set() // Created a set of actor to add for collecting and sending information 
+
+  private def addToSet(ref: ActorRef[Estimate]): Unit ={
+    FellowActor = FellowActor+ref
+  }
+
   def apply(): Behavior[EstimatorReceivable] = idle()
 
   def estimating(realVec: ArrayRealVector, replyTo: ActorRef[Estimate]): Behavior[EstimatorReceivable] = Behaviors.setup { context =>
@@ -63,12 +73,23 @@ object Estimator {
     Behaviors.same
   }
 
+  def addingNewFellow(addr: ActorRef[Estimate]): Behavior[EstimatorReceivable] = Behaviors.setup { context =>
+    addToSet(addr)
+    context.log.info("Adding a new fellow to my list")
+    Behaviors.same
+
+  }
+
   def idle(): Behavior[EstimatorReceivable] = Behaviors.withTimers { timer =>
     timer.startSingleTimer(Timeout, 5.second)
     Behaviors.receive { (context, message) =>
       message match {
         case Measurement(realVec, replyTo) =>
           estimating(realVec, replyTo)
+        
+        case MyAddr(addr) =>
+          addingNewFellow(addr)
+                 
         case Timeout =>
           context.log.info("Timed out...")
           Behaviors.stopped
@@ -122,13 +143,17 @@ object Generator {
     generating(estimator, messageCounter)
   }
 }
-
+/*
+Generating the actor system 
+*/
 object KalmanMain {
   def apply(): Behavior[StartGenerate] =
     Behaviors.setup { context =>
       //#create-actors
-      val estimator = context.spawn(Estimator(), "estimator")
+      val estimator1_1 = context.spawn(Estimator(), "estimator")
+      val estimator1_2 = context.spawn(Estimator(), "estimator1")
       val generator = context.spawn(Generator(estimator), "generator")
+      val generator1 = context.spawn(Generator(estimator1), "generator1")
       //#create-actors
       Behaviors.same
     }

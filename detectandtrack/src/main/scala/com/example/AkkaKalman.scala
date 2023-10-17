@@ -152,8 +152,8 @@ object KalmanMain {
       //#create-actors
       val estimator1_1 = context.spawn(Estimator(), "estimator")
       val estimator1_2 = context.spawn(Estimator(), "estimator1")
-      val generator = context.spawn(Generator(estimator), "generator")
-      val generator1 = context.spawn(Generator(estimator1), "generator1")
+      val generator = context.spawn(Generator(estimator1_1), "generator")
+      val generator1 = context.spawn(Generator(estimator1_2), "generator1")
       //#create-actors
       Behaviors.same
     }

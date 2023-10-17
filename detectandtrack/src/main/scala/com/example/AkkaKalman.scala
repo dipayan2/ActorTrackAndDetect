@@ -15,7 +15,7 @@ import org.apache.commons.math3.random.{JDKRandomGenerator, RandomGenerator}
 import akka.actor.Actor
 
 sealed trait EstimatorReceivable
-final case class MyAddr(addr: ActorRef[Estimate]) extends EstimatorReceivable
+final case class MyAddr(addr: ActorRef[EstimatorReceivable]) extends EstimatorReceivable
 final case class Measurement(realVec: ArrayRealVector, replyTo: ActorRef[Estimate]) extends EstimatorReceivable
 final case object Timeout extends EstimatorReceivable
 final case class Estimate(estimate: Double)
@@ -55,9 +55,9 @@ object Estimator {
   val filter = new KalmanFilter(pm, mm)
 
 
-  var FellowActor: Set[ActorRef[Estimate]] = Set() // Created a set of actor to add for collecting and sending information 
+  var FellowActor: Set[ActorRef[EstimatorReceivable]] = Set() // Created a set of actor to add for collecting and sending information 
 
-  private def addToSet(ref: ActorRef[Estimate]): Unit ={
+  private def addToSet(ref: ActorRef[EstimatorReceivable]): Unit ={
     FellowActor = FellowActor+ref
   }
 
@@ -73,7 +73,7 @@ object Estimator {
     Behaviors.same
   }
 
-  def addingNewFellow(addr: ActorRef[Estimate]): Behavior[EstimatorReceivable] = Behaviors.setup { context =>
+  def addingNewFellow(addr: ActorRef[EstimatorReceivable]): Behavior[EstimatorReceivable] = Behaviors.setup { context =>
     addToSet(addr)
     context.log.info("Adding a new fellow to my list")
     Behaviors.same
@@ -152,6 +152,8 @@ object KalmanMain {
       //#create-actors
       val estimator1_1 = context.spawn(Estimator(), "estimator")
       val estimator1_2 = context.spawn(Estimator(), "estimator1")
+      estimator1_1 ! MyAddr(estimator1_2)
+      estimator1_2 ! MyAddr(estimator1_1)
       val generator = context.spawn(Generator(estimator1_1), "generator")
       val generator1 = context.spawn(Generator(estimator1_2), "generator1")
       //#create-actors

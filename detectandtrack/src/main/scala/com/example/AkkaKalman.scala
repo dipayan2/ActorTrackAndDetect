@@ -24,11 +24,13 @@ final case class StartGenerate()
 object Estimator {
   /*
     Behaviour value. fixed value associated with each Estimator
+    Common for each estimator
   */
   val constantVoltage = 10.0
   val measurementNoise = 1.0
   val processNoise = 1e-5
   
+  class MyData {
   // A = [ 1 ]
   val A = new Array2DRowRealMatrix(Array(1.0))
 
@@ -53,6 +55,7 @@ object Estimator {
   val pm = new DefaultProcessModel(A, B, Q, x, P0)
   val mm = new DefaultMeasurementModel(H, R)
   val filter = new KalmanFilter(pm, mm)
+  }
 
 
   var FellowActor: Set[ActorRef[EstimatorReceivable]] = Set() // Created a set of actor to add for collecting and sending information 
@@ -61,7 +64,7 @@ object Estimator {
     FellowActor = FellowActor+ref
   }
 
-  def apply(): Behavior[EstimatorReceivable] = idle()
+  def apply(): Behavior[EstimatorReceivable] = idle(new MyData())
 
   def estimating(realVec: ArrayRealVector, replyTo: ActorRef[Estimate]): Behavior[EstimatorReceivable] = Behaviors.setup { context =>
     filter.predict();
@@ -80,11 +83,40 @@ object Estimator {
 
   }
 
-  def idle(): Behavior[EstimatorReceivable] = Behaviors.withTimers { timer =>
+  def idle(mydata : MyData): Behavior[EstimatorReceivable] = Behaviors.withTimers { timer =>
     timer.startSingleTimer(Timeout, 5.second)
     Behaviors.receive { (context, message) =>
       message match {
         case Measurement(realVec, replyTo) =>
+          mydata.haveIReceivedMeasurementYet = true
+          timer.cancel(Timeout)
+          estimating(realVec, replyTo)
+          idle(mydata)
+        
+        case MyAddr(addr) =>
+          addingNewFellow(addr)
+                 
+        case Timeout =>
+          context.log.info("Timed out...")
+          if (mydata.haveIReceivedMeasurementYet) {
+            Behaviors.same
+          }
+          else {
+            probation(mydata)
+          }
+        
+        case _ =>
+          Behaviors.same
+      }
+    }
+  }
+
+  def probation(mydata : MyData): Behavior[EstimatorReceivable] = Behaviors.withTimers { timer =>
+    timer.startSingleTimer(Timeout, 5.second)
+    Behaviors.receive { (context, message) =>
+      message match {
+        case Measurement(realVec, replyTo) =>
+          mydata.haveIReceivedMeasurementYet = true
           estimating(realVec, replyTo)
         
         case MyAddr(addr) =>
@@ -92,10 +124,18 @@ object Estimator {
                  
         case Timeout =>
           context.log.info("Timed out...")
-          Behaviors.stopped
+          if (mydata.haveIReceivedMeasurementYet) {
+            Behaviors.same
+          }
+          else {
+            probation(mydata)
+          }
+        
+        case _ =>
+          Behaviors.same
       }
     }
-  }
+
 }
 
 object Generator {

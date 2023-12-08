@@ -1,21 +1,21 @@
-// //#full-example
-// //#currently using example from https://commons.apache.org/proper/commons-math/userguide/filter.html
-// package com.example
+//#full-example
+//#currently using example from https://commons.apache.org/proper/commons-math/userguide/filter.html
+package com.example
 
-// import akka.actor.typed.ActorRef
-// import akka.actor.typed.ActorSystem
-// import akka.actor.typed.Behavior
-// import akka.actor.typed.scaladsl.Behaviors
-// import scala.concurrent.duration._
-// import scala.util.Random
-// import org.apache.commons.math3.filter._
-// import org.apache.commons.math3.linear._
-// import org.apache.commons.math3.random.{JDKRandomGenerator, RandomGenerator}
-// import akka.actor.Actor
-// import scala.collection.mutable.ListBuffer
+import akka.actor.typed.ActorRef
+import akka.actor.typed.ActorSystem
+import akka.actor.typed.Behavior
+import akka.actor.typed.scaladsl.Behaviors
+import scala.concurrent.duration._
+import scala.util.Random
+import org.apache.commons.math3.filter._
+import org.apache.commons.math3.linear._
+import org.apache.commons.math3.random.{JDKRandomGenerator, RandomGenerator}
+import akka.actor.Actor
+import scala.collection.mutable.ListBuffer
 
 // final case class Estimate(estimate: Double)
-// final case class StartGenerate()
+final case class StartGenerate()
 
 // object Estimator {
 //   // Constants
@@ -184,23 +184,20 @@
 //   }
 // }
 
-// object KalmanMain {
-//   def apply(): Behavior[StartGenerate] =
-//     Behaviors.setup { context =>
-//       //#create-actors
-//       val estimator1 = context.spawn(Estimator(2), "LeaderEstimator")
-//       val estimator2 = context.spawn(Estimator(estimator1, 2), "NormalEstimator")
-//       val generator1 = context.spawn(Generator(estimator1), "generator1")
-//       val generator2 = context.spawn(Generator(estimator2), "generator2")
-//       //#create-actors
-//       Behaviors.same
-//     }
-// }
+object KalmanMain {
+  def apply(): Behavior[StartGenerate] =
+    Behaviors.setup { context =>
+      //#create-actors
+      val drone1 = context.spawn(DroneNode(true), "drone1")
+      //#create-actors
+      Behaviors.same
+    }
+}
 
 // //#main-class
-// object AkkaQuickstart extends App {
-//   val kalmanMain = ActorSystem[StartGenerate](KalmanMain(), "generator-estimator")
-//   kalmanMain ! StartGenerate()
-// }
+object AkkaQuickstart extends App {
+  val kalmanMain = ActorSystem[StartGenerate](KalmanMain(), "generator-estimator")
+  kalmanMain ! StartGenerate()
+}
 // //#main-class
 // //#full-example

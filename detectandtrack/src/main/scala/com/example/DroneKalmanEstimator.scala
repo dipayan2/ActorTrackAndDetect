@@ -10,11 +10,10 @@ import scala.concurrent.duration._
 import scala.collection.mutable.ListBuffer
 import org.apache.commons.math3.linear.MatrixUtils
 
-final case class Estimate(estimate: Double)
-sealed trait EstimatorReceivable
-final case object Timeout extends EstimatorReceivable
-final case class DroneMeasurement(leader: ActorRef[LocalState], realVec: ArrayRealVector, parentDrone: ActorRef[Estimate]) extends EstimatorReceivable
-final case class GlobalState(avgMeasurement: ArrayRealVector, avgCovarianceMatrix: Array2DRowRealMatrix) extends EstimatorReceivable
+final case class Estimate(estimate: Double) extends DroneNode.KalmanMessage
+final case object Timeout extends DroneNode.KalmanMessage
+final case class GlobalState(avgMeasurement: ArrayRealVector, avgCovarianceMatrix: Array2DRowRealMatrix) extends DroneNode.KalmanMessage
+final case class EstimatorInput(measurement: ArrayRealVector, parentDrone: ActorRef[ DroneNode.KalmanMessage], leadDrone: ActorRef[KalmanState]) extends  DroneNode.KalmanMessage
 
 /**
   * A drone spawns a DroneKalmanEstimator actor to send its sensor measurments to and receives a kalman estimate from
@@ -46,15 +45,16 @@ object DroneKalmanEstimator {
   // R = [ 0.1 ]
   val R = new Array2DRowRealMatrix(Array(measurementNoise))
 
-  def apply(numNodes: Int): Behavior[EstimatorReceivable] = idle()
+  def apply(numNodes: Int): Behavior[DroneNode.KalmanMessage] = idle()
 
-  private def idle(): Behavior[EstimatorReceivable] = Behaviors.withTimers { timer =>
+  private def idle(): Behavior[DroneNode.KalmanMessage] = Behaviors.withTimers { timer =>
     timer.startSingleTimer(Timeout, 5.second)
     // Wait for measurement data
     Behaviors.receive { (context, message) =>
+      print(message)
       message match {
-        case DroneMeasurement(leader, realVec, parentDrone) =>
-          sendLocalState(realVec, leader, parentDrone)
+        case EstimatorInput(realVec, parent, parentDrone) =>
+          sendLocalState(realVec, parent, parentDrone)
         case Timeout =>
           context.log.info("Timed out waiting for measurement...")
           Behaviors.stopped
@@ -64,14 +64,14 @@ object DroneKalmanEstimator {
     }
   }
 
-  private def sendLocalState(measurement: ArrayRealVector, leader: ActorRef[LocalState], parentDrone: ActorRef[Estimate]): Behavior[EstimatorReceivable] = Behaviors.setup { context =>
+  private def sendLocalState(measurement: ArrayRealVector, parentDrone: ActorRef[DroneNode.KalmanMessage], leader: ActorRef[LocalState]): Behavior[DroneNode.KalmanMessage] = Behaviors.setup { context =>
     // Need to do "new Array2DRowRealMatrix(<Matrix>.getData())" since inner result returns a RealMatrix 
     leader ! LocalState(measurement, new Array2DRowRealMatrix(H.transpose().multiply(MatrixUtils.inverse(R)).multiply(H).getData()), context.self)
     receiveGlobalState(leader, parentDrone)
   }
 
-  private def receiveGlobalState(leader: ActorRef[LocalState], parentDrone: ActorRef[Estimate]): Behavior[EstimatorReceivable] = Behaviors.receive { (context, message) =>
-    context.log.info(s"Received global state ${message}")
+  private def receiveGlobalState(leader: ActorRef[LocalState], parentDrone: ActorRef[DroneNode.KalmanMessage]): Behavior[DroneNode.KalmanMessage] = Behaviors.receive { (context, message) =>
+    context.log.debug(s"Received global state ${message}")
     message match {
       case GlobalState(avgMeasurement, avgCovarianceMatrix) => 
         estimating(avgMeasurement, avgCovarianceMatrix, leader, parentDrone)
@@ -82,7 +82,7 @@ object DroneKalmanEstimator {
 
   // Performs equations 22-25 from paper 5 (Distributed Kalman Filter with Embedded Consensus Filters)
   // avgMeasurement is y, avgCovarianceMatrix is S
-  private def estimating(avgMeasurement: ArrayRealVector, avgCovarianceMatrix: Array2DRowRealMatrix, leader: ActorRef[LocalState], parentDrone: ActorRef[Estimate]): Behavior[EstimatorReceivable] = Behaviors.setup { context =>
+  private def estimating(avgMeasurement: ArrayRealVector, avgCovarianceMatrix: Array2DRowRealMatrix, leader: ActorRef[LocalState], parentDrone: ActorRef[DroneNode.KalmanMessage]): Behavior[DroneNode.KalmanMessage] = Behaviors.setup { context =>
     // M = inv(inv(P) + S)
     val M = new Array2DRowRealMatrix(MatrixUtils.inverse(MatrixUtils.inverse(P).add(avgCovarianceMatrix)).getData())
     // xHat = xBar + M(y-Sx)

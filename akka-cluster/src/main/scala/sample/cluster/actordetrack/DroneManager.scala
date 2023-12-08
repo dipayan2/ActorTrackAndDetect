@@ -11,12 +11,13 @@ object DroneManager{
         Behaviors.setup[Receptionist.Listing]{ ctx=>
             ctx.log.info("[DRONE]Manager Started")
             // ctx.system.receptionist ! Receptionist.Subscribe(App.DroneServiceKey, ctx.self)
-            ctx.system.receptionist ! Receptionist.Subscribe(App.DroneServiceKey, ctx.self)
+            ctx.system.receptionist ! Receptionist.Subscribe(DroneNode.DroneServiceKey, ctx.self)
             Behaviors.receiveMessagePartial[Receptionist.Listing]{
-            case App.DroneServiceKey.Listing(listings) =>
-              listings.foreach(ps => 
+            case DroneNode.DroneServiceKey.Listing(listings) =>
+              listings.foreach{ps => 
+                ps ! DroneNode.Start
                 ctx.log.info("[DRONE] New Drone Started")
-                )
+              }
               Behaviors.same
           }
 

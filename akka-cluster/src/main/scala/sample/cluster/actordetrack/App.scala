@@ -11,7 +11,7 @@ import com.typesafe.config.ConfigFactory
 
 object App {
 
-  val DroneServiceKey = ServiceKey[DroneNode.Event]("DroneService")
+  // val DroneServiceKey = ServiceKey[DroneNode.Event]("DroneService")
 
   //final case class DroneService(replyTo: ActorRef[DroneNode.Start])
   

@@ -26,6 +26,4 @@ object DroneNode{
 
         }
 
-
-
 }

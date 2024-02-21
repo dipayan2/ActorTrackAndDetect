@@ -1,0 +1,721 @@
+2023.10.18 10:27:18 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.83.0.
+Oct 18, 2023 10:27:19 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2023.10.18 10:27:20 WARN  Build server is not auto-connectable.
+2023.10.18 10:27:20 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/build.sbt
+2023.10.18 10:27:26 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/build.sbt. Using presentation compiler with project's scala-library version: 3.3.1
+2023.10.18 10:27:29 INFO  time: code lens generation in 1.97s
+2023.10.18 10:28:41 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/build.sbt
+2023.10.18 10:28:59 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/simple/App.scala
+2023.10.18 10:29:38 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/build.sbt
+2023.10.18 10:35:05 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/transformation/Worker.scala
+2023.10.18 10:35:06 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/transformation/Frontend.scala
+2023.10.18 10:35:07 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/transformation/App.scala
+2023.10.18 10:35:08 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.10.18 10:35:35 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/simple/ClusterListener.scala
+Oct 18, 2023 10:35:36 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 78
+2023.10.18 10:35:58 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/multi-jvm/scala/sample/cluster/stats/StatsSampleSingleMasterSpec.scala
+2023.10.18 10:36:02 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/multi-jvm/scala/sample/cluster/stats/StatsSampleSpec.scala
+2023.10.18 10:36:06 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/build.sbt
+2023.10.18 10:40:07 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/multi-jvm/scala/sample/cluster/stats/StatsSampleSingleMasterSpec.scala
+2023.10.18 10:42:06 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/simple/ClusterListener.scala
+2023.10.18 10:43:59 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/multi-jvm/scala/sample/cluster/stats/StatsSampleSpec.scala
+2023.10.18 10:44:34 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/AppOneMaster.scala
+2023.10.18 10:44:41 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.10.18 10:44:58 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/transformation/App.scala
+2023.10.18 10:45:17 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.10.18 10:45:19 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/simple/ClusterListener.scala
+2023.10.18 12:35:06 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsClient.scala
+2023.10.18 12:35:19 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsWorker.scala
+2023.10.18 12:35:22 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsClient.scala
+2023.10.18 12:35:22 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/AppOneMaster.scala
+2023.10.18 12:35:57 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsWorker.scala
+2023.10.18 12:35:57 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsService.scala
+2023.10.18 12:37:23 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsClient.scala
+2023.10.18 12:37:52 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsService.scala
+2023.10.18 12:45:29 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/build.sbt
+2023.10.18 12:45:57 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/build.sbt
+2023.10.18 12:46:08 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/project/plugins.sbt
+2023.10.18 12:46:08 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/project/plugins.sbt
+2023.10.18 12:46:09 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/project/plugins.sbt
+2023.10.18 12:51:09 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/AkkaKalman.scala
+2023.10.18 12:57:13 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/AkkaKalman.scala
+2023.10.18 12:59:17 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/AppOneMaster.scala
+2023.10.19 10:03:20 INFO  Shutting down server
+2023.10.19 10:03:20 INFO  shutting down Metals
+2023.10.19 10:03:20 INFO  Exiting server
+2023.10.20 10:57:27 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.83.1.
+2023.10.20 10:57:28 WARN  Build server is not auto-connectable.
+2023.10.20 15:40:37 INFO  Shutting down server
+2023.10.20 15:40:37 INFO  shutting down Metals
+2023.10.20 15:40:37 INFO  Exiting server
+2023.10.24 16:59:38 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.83.1.
+2023.10.24 16:59:39 WARN  Build server is not auto-connectable.
+2023.10.24 17:01:02 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/simple/App.scala
+Oct 24, 2023 5:01:04 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2023.10.24 17:01:07 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/simple/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.10.24 17:04:41 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/CborSerializable.scala
+2023.10.24 17:05:08 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.10.24 17:05:47 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsService.scala
+2023.10.24 17:06:43 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/AppOneMaster.scala
+2023.10.24 17:07:16 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/simple/ClusterListener.scala
+2023.10.24 17:09:24 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 17:29:11 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/ClusterListener.scala
+2023.10.24 17:29:26 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 17:31:02 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/AppOneMaster.scala
+2023.10.24 17:31:05 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 17:31:09 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/AppOneMaster.scala
+2023.10.24 17:31:34 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 17:31:49 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/build.sbt
+2023.10.24 17:33:43 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsWorker.scala
+2023.10.24 17:33:44 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsClient.scala
+2023.10.24 17:33:47 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsService.scala
+2023.10.24 17:35:42 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsWorker.scala
+2023.10.24 17:35:55 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsWorker.scala
+2023.10.24 17:36:01 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsWorker.scala
+2023.10.24 17:36:10 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 17:36:35 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsWorker.scala
+2023.10.24 17:36:40 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsWorker.scala
+2023.10.24 17:36:43 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 17:39:51 INFO  Attempting to connect to the build server...
+2023.10.24 17:39:51 INFO  Bloop uses /Library/Java/Home/ defined at /Users/dmukherjee/.bloop/bloop.json
+2023.10.24 17:39:55 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/.metals/bsp.trace.json or /Users/dmukherjee/Library/Caches/org.scalameta.metals/bsp.trace.json
+2023.10.24 17:39:55 INFO  time: Connected to build server in 4.61s
+2023.10.24 17:39:55 INFO  Connected to Build server: Bloop v1.5.11
+2023.10.24 17:39:56 ERROR Build server error: Empty build targets. Expected at least one build target identifier.
+2023.10.24 17:39:56 INFO  time: indexed workspace in 0.5s
+2023.10.24 17:39:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsWorker.scala
+2023.10.24 17:39:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/AppOneMaster.scala
+2023.10.24 17:39:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/simple/App.scala
+2023.10.24 17:39:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsService.scala
+2023.10.24 17:39:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.10.24 17:39:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 17:39:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/simple/ClusterListener.scala
+2023.10.24 17:39:56 WARN  no build target for: /private/var/folders/fd/_hkwg4ds39ldx7dghpz2b_680000gn/T/metals621512669996538868Main-3519202012914617986.scala
+2023.10.24 17:39:57 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/.metals/.tmp/Main-3519202012914617986.scala
+2023.10.24 17:39:56 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.10.24 17:39:58 INFO  time: code lens generation in 1.16s
+Oct 24, 2023 5:40:25 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2023.10.24 17:41:10 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/build.sbt
+Oct 24, 2023 5:41:11 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 390
+2023.10.24 17:41:43 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/build.sbt
+2023.10.24 18:07:57 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 18:07:57 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/ClusterListener.scala
+2023.10.24 18:07:57 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsClient.scala
+2023.10.24 18:07:57 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsService.scala
+2023.10.24 18:07:57 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsWorker.scala
+2023.10.24 18:08:18 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 18:08:33 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 18:08:47 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 18:08:47 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 18:08:48 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 18:08:49 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 18:09:04 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/transformation/App.scala
+2023.10.24 18:09:19 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 18:09:19 WARN  no build target for: /Users/dmukherjee/Library/Application Support/Code/User/History/-5d082497/YRgu.scala
+2023.10.24 18:09:32 WARN  no build target for: /Users/dmukherjee/Library/Application Support/Code/User/History/-5d082497/I9c6.scala
+2023.10.24 18:09:32 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 18:09:45 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 18:09:45 WARN  no build target for: /Users/dmukherjee/Library/Application Support/Code/User/History/-5d082497/XgyX.scala
+2023.10.24 18:10:39 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.24 18:10:39 WARN  no build target for: /Users/dmukherjee/Library/Application Support/Code/User/History/-5d082497/OcdH.scala
+2023.10.24 20:02:51 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsClient.scala
+2023.10.24 20:03:03 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsWorker.scala
+2023.10.24 20:13:52 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsService.scala
+2023.10.24 20:13:52 WARN  no build target for: /Users/dmukherjee/Library/Application Support/Code/User/History/-512ad078/5km3.scala
+2023.10.24 20:14:05 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsService.scala
+2023.10.24 20:14:05 WARN  no build target for: /Users/dmukherjee/Library/Application Support/Code/User/History/-512ad078/F8Uh.scala
+2023.10.24 20:15:06 WARN  no build target for: /Users/dmukherjee/Library/Application Support/Code/User/History/-512ad078/hsi2.scala
+2023.10.24 20:15:06 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsService.scala
+2023.10.24 20:15:06 WARN  no build target for: /Users/dmukherjee/Library/Application Support/Code/User/History/-512ad078/hsi2.scala
+2023.10.24 23:37:58 ERROR Error encountered during file watching
+java.nio.file.NoSuchFileException: /Users/dmukherjee/Library/Application Support/Google/Chrome/SingletonLock
+	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:86)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107)
+	at sun.nio.fs.UnixPath.toRealPath(UnixPath.java:837)
+	at com.swoval.files.SymlinkWatcher.addSymlink(SymlinkWatcher.java:194)
+	at com.swoval.files.SymlinkFollowingPathWatcher$1.onNext(SymlinkFollowingPathWatcher.java:48)
+	at com.swoval.files.SymlinkFollowingPathWatcher$1.onNext(SymlinkFollowingPathWatcher.java:36)
+	at com.swoval.files.Observers.onNext(Observers.java:31)
+	at com.swoval.files.ApplePathWatcher$1.accept(ApplePathWatcher.java:287)
+	at com.swoval.files.ApplePathWatcher$1.accept(ApplePathWatcher.java:261)
+	at com.swoval.files.apple.FileEventMonitorImpl$WrappedConsumer$1.run(FileEventMonitors.java:178)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2023.10.24 23:37:58 ERROR Error encountered during file watching
+java.nio.file.NoSuchFileException: /Users/dmukherjee/Library/Application Support/Google/Chrome/SingletonCookie
+	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:86)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107)
+	at sun.nio.fs.UnixPath.toRealPath(UnixPath.java:837)
+	at com.swoval.files.SymlinkWatcher.addSymlink(SymlinkWatcher.java:194)
+	at com.swoval.files.SymlinkFollowingPathWatcher$1.onNext(SymlinkFollowingPathWatcher.java:48)
+	at com.swoval.files.SymlinkFollowingPathWatcher$1.onNext(SymlinkFollowingPathWatcher.java:36)
+	at com.swoval.files.Observers.onNext(Observers.java:31)
+	at com.swoval.files.ApplePathWatcher$1.accept(ApplePathWatcher.java:287)
+	at com.swoval.files.ApplePathWatcher$1.accept(ApplePathWatcher.java:261)
+	at com.swoval.files.apple.FileEventMonitorImpl$WrappedConsumer$1.run(FileEventMonitors.java:178)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2023.10.24 23:37:58 ERROR Error encountered during file watching
+java.nio.file.NoSuchFileException: /private/var/folders/fd/_hkwg4ds39ldx7dghpz2b_680000gn/T/.com.google.Chrome.HWCrFp/SingletonCookie
+	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:86)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107)
+	at sun.nio.fs.UnixPath.toRealPath(UnixPath.java:837)
+	at com.swoval.files.SymlinkWatcher.addSymlink(SymlinkWatcher.java:194)
+	at com.swoval.files.SymlinkFollowingPathWatcher$1.onNext(SymlinkFollowingPathWatcher.java:48)
+	at com.swoval.files.SymlinkFollowingPathWatcher$1.onNext(SymlinkFollowingPathWatcher.java:36)
+	at com.swoval.files.Observers.onNext(Observers.java:31)
+	at com.swoval.files.ApplePathWatcher$1.accept(ApplePathWatcher.java:287)
+	at com.swoval.files.ApplePathWatcher$1.accept(ApplePathWatcher.java:261)
+	at com.swoval.files.apple.FileEventMonitorImpl$WrappedConsumer$1.run(FileEventMonitors.java:178)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2023.10.24 23:37:58 ERROR Error encountered during file watching
+java.nio.file.NoSuchFileException: /Users/dmukherjee/Library/Application Support/Google/Chrome/RunningChromeVersion
+	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:86)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107)
+	at sun.nio.fs.UnixPath.toRealPath(UnixPath.java:837)
+	at com.swoval.files.SymlinkWatcher.addSymlink(SymlinkWatcher.java:194)
+	at com.swoval.files.SymlinkFollowingPathWatcher$1.onNext(SymlinkFollowingPathWatcher.java:48)
+	at com.swoval.files.SymlinkFollowingPathWatcher$1.onNext(SymlinkFollowingPathWatcher.java:36)
+	at com.swoval.files.Observers.onNext(Observers.java:31)
+	at com.swoval.files.ApplePathWatcher$1.accept(ApplePathWatcher.java:287)
+	at com.swoval.files.ApplePathWatcher$1.accept(ApplePathWatcher.java:261)
+	at com.swoval.files.apple.FileEventMonitorImpl$WrappedConsumer$1.run(FileEventMonitors.java:178)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2023.10.24 23:38:19 INFO  Shutting down server
+2023.10.24 23:38:19 INFO  shutting down Metals
+2023.10.24 23:38:19 INFO  Shut down connection with build server.
+2023.10.24 23:38:19 INFO  Exiting server
+2023.10.25 10:16:25 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.83.1.
+2023.10.25 10:16:28 WARN  Build server is not auto-connectable.
+2023.10.25 10:16:28 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsClient.scala
+2023.10.25 10:16:28 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 10:16:32 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsClient.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.10.25 10:16:37 INFO  time: code lens generation in 8.76s
+2023.10.25 10:16:37 INFO  time: code lens generation in 8.76s
+2023.10.25 10:18:13 INFO  time: code lens generation in 1.19s
+2023.10.25 10:18:32 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 10:18:35 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/AppOneMaster.scala
+2023.10.25 10:18:44 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsClient.scala
+2023.10.25 10:18:47 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsService.scala
+2023.10.25 10:18:51 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsService.scala
+2023.10.25 10:18:52 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsWorker.scala
+2023.10.25 10:18:54 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsWorker.scala
+2023.10.25 10:19:09 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsClient.scala
+2023.10.25 10:20:26 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/AppOneMaster.scala
+2023.10.25 10:24:41 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/multi-jvm/scala/sample/cluster/stats/StatsSampleSingleMasterSpec.scala
+2023.10.25 10:24:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/multi-jvm/scala/sample/cluster/stats/StatsSampleSpec.scala
+Oct 25, 2023 10:31:00 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 405
+2023.10.25 10:31:44 INFO  time: code lens generation in 1.16s
+2023.10.25 10:36:28 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsService.scala
+2023.10.25 11:02:39 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsService.scala
+2023.10.25 11:02:48 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsClient.scala
+2023.10.25 11:02:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsClient.scala
+2023.10.25 11:02:59 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/StatsClient.scala
+2023.10.25 11:13:49 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.10.25 11:13:58 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 11:14:09 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.10.25 11:14:55 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+Oct 25, 2023 11:52:25 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/.metals/.reports/metals-full/2023-10-25/r_compiler-error_11-52-25-916.md
+2023.10.25 11:56:37 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsService.scala
+2023.10.25 11:58:12 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsClient.scala
+2023.10.25 16:16:00 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 16:16:45 INFO  time: code lens generation in 1.31s
+2023.10.25 16:16:57 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 16:20:15 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 16:21:20 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 16:22:25 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 16:22:57 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+Oct 25, 2023 4:23:15 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2063
+2023.10.25 16:23:17 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 16:23:23 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 16:27:31 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 16:27:51 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 16:31:48 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 16:32:50 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.25 16:51:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsWorker.scala
+2023.10.27 10:26:54 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.27 10:27:07 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.10.27 10:27:07 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.10.27 10:27:07 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.10.27 10:27:21 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.27 10:27:21 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.27 10:27:22 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.10.27 10:27:28 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+Oct 27, 2023 10:27:36 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3203
+2023.10.27 10:27:37 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+Oct 27, 2023 10:31:46 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3807
+2023.10.27 10:32:40 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.10.27 10:39:05 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneSensor.scala
+2023.10.27 10:39:05 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneSensor.scala
+2023.10.27 10:39:05 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneSensor.scala
+2023.10.27 10:39:08 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneSensor.scala
+2023.10.27 10:39:13 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneSensor.scala
+2023.10.27 10:39:29 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneSensor.scala
+2023.10.27 10:39:54 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/AkkaKalman.scala
+2023.10.27 10:41:20 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/AkkaKalman.scala
+Oct 27, 2023 3:50:22 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 4248
+2023.10.27 15:54:47 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.27 15:55:00 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.10.27 16:07:49 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.27 16:08:03 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.10.27 16:09:18 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.27 16:09:34 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.27 16:10:32 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.10.27 19:56:12 INFO  Shutting down server
+2023.10.27 19:56:12 INFO  shutting down Metals
+2023.10.27 19:56:12 INFO  Exiting server
+2023.10.28 11:01:18 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.83.1.
+2023.10.28 11:01:21 WARN  Build server is not auto-connectable.
+2023.10.28 11:01:21 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.10.28 11:01:21 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.28 11:01:25 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.10.28 11:01:27 INFO  Shutting down server
+2023.10.28 11:01:27 INFO  shutting down Metals
+2023.10.28 11:01:31 INFO  Exiting server
+2023.10.28 11:01:31 ERROR Unexpected error initializing server: 
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequest failed with message: Canceled
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2023.10.29 14:26:10 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.83.1.
+2023.10.29 14:26:17 WARN  Build server is not auto-connectable.
+2023.10.29 14:26:17 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.29 14:26:17 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.10.29 14:26:21 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.10.29 14:26:25 INFO  time: code lens generation in 8.38s
+2023.10.29 14:26:25 INFO  time: code lens generation in 8.38s
+2023.10.29 14:26:25 INFO  time: code lens generation in 8.38s
+2023.10.29 14:26:25 INFO  time: code lens generation in 5.35s
+2023.10.29 14:26:25 INFO  time: code lens generation in 8.38s
+2023.10.29 22:21:37 INFO  Shutting down server
+2023.10.29 22:21:37 INFO  shutting down Metals
+2023.10.29 22:21:37 INFO  Exiting server
+2023.10.30 10:50:01 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.83.1.
+2023.10.30 10:50:04 WARN  Build server is not auto-connectable.
+2023.10.30 10:50:04 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.10.30 10:50:04 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.10.30 10:50:08 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.10.30 10:50:11 INFO  time: code lens generation in 6.8s
+2023.10.30 10:50:12 INFO  time: code lens generation in 7.26s
+2023.10.30 10:50:17 INFO  Shutting down server
+2023.10.30 10:50:17 INFO  shutting down Metals
+2023.10.30 10:50:17 INFO  Exiting server
+2023.11.01 10:31:45 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.83.1.
+2023.11.01 10:31:48 WARN  Build server is not auto-connectable.
+2023.11.01 10:31:48 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 10:31:48 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.11.01 10:31:51 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.11.01 10:31:56 INFO  time: code lens generation in 2.65s
+2023.11.01 10:31:56 INFO  time: code lens generation in 8.14s
+2023.11.01 10:31:56 INFO  time: code lens generation in 8.14s
+2023.11.01 10:39:21 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+Exception in thread "pool-3-thread-1" java.lang.Error: java.lang.InterruptedException
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1155)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.InterruptedException
+	at scala.meta.internal.metals.FutureCancelToken.checkCanceled(FutureCancelToken.scala:29)
+	at scala.meta.internal.pc.CompilerAccess.onCompilerJobQueue$$anonfun$1(CompilerAccess.scala:230)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:152)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	... 2 more
+2023.11.01 10:39:59 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 10:40:03 WARN  Using indexes to guess the definition of DroneServiceKey
+2023.11.01 10:40:04 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 10:46:11 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsClient.scala
+2023.11.01 10:46:25 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsService.scala
+2023.11.01 10:58:08 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 10:58:09 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneSensor.scala
+2023.11.01 10:58:19 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 10:58:19 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 10:58:20 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 10:58:40 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 10:58:54 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+Nov 01, 2023 10:59:47 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/.metals/.reports/metals-full/2023-11-01/r_compiler-error_10-59-47-037.md
+2023.11.01 10:59:47 ERROR Failed to tokenize input for semantic tokens for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+scala.meta.tokenizers.TokenizeException: <input>:10: error: unclosed character literal
+    val DroneKey = ServiceKey[DroneReg]['']
+                                        ^
+	at scala.meta.internal.tokenizers.Reporter.syntaxError(Reporter.scala:23)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError$(Reporter.scala:23)
+	at scala.meta.internal.tokenizers.Reporter$$anon$1.syntaxError(Reporter.scala:33)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError(Reporter.scala:25)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError$(Reporter.scala:25)
+	at scala.meta.internal.tokenizers.Reporter$$anon$1.syntaxError(Reporter.scala:33)
+	at scala.meta.internal.tokenizers.LegacyScanner.fetchSingleQuote$1(LegacyScanner.scala:407)
+	at scala.meta.internal.tokenizers.LegacyScanner.fetchToken(LegacyScanner.scala:412)
+	at scala.meta.internal.tokenizers.LegacyScanner.nextToken(LegacyScanner.scala:211)
+	at scala.meta.internal.tokenizers.LegacyScanner.foreach(LegacyScanner.scala:1011)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.uncachedTokenize(ScalametaTokenizer.scala:24)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.$anonfun$tokenize$1(ScalametaTokenizer.scala:17)
+	at scala.collection.concurrent.TrieMap.getOrElseUpdate(TrieMap.scala:962)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.tokenize(ScalametaTokenizer.scala:17)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer$$anon$2.apply(ScalametaTokenizer.scala:332)
+	at scala.meta.tokenizers.Api$XtensionTokenizeDialectInput.tokenize(Api.scala:25)
+	at scala.meta.tokenizers.Api$XtensionTokenizeInputLike.tokenize(Api.scala:14)
+	at scala.meta.internal.metals.SemanticTokensProvider$.getTokens(SemanticTokensProvider.scala:28)
+	at scala.meta.internal.metals.SemanticTokensProvider$.provide(SemanticTokensProvider.scala:89)
+	at scala.meta.internal.metals.Compilers.$anonfun$semanticTokens$3(Compilers.scala:539)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2023.11.01 10:59:53 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 11:14:23 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsWorker.scala
+Nov 01, 2023 11:21:56 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 568
+Nov 01, 2023 12:06:14 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 677
+2023.11.01 12:10:23 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+Nov 01, 2023 12:10:23 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 852
+2023.11.01 12:10:35 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 12:10:42 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:10:49 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+Nov 01, 2023 12:11:15 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 934
+2023.11.01 12:11:23 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:11:59 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:12:13 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:12:38 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:13:23 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+Nov 01, 2023 12:13:29 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1234
+2023.11.01 12:13:33 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:13:38 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 12:13:41 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 12:14:34 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 12:14:44 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 12:14:54 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 12:20:30 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:20:31 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:20:49 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 12:21:59 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 12:23:30 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 12:23:38 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:24:15 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 12:24:28 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneSensor.scala
+Nov 01, 2023 12:24:48 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1703
+2023.11.01 12:25:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:27:49 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 12:31:57 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/Sensor.scala
+2023.11.01 12:31:57 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/Sensor.scala
+2023.11.01 12:31:57 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/Sensor.scala
+2023.11.01 12:32:03 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/Sensor.scala
+2023.11.01 12:32:12 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/Sensor.scala
+2023.11.01 12:32:28 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/AkkaKalman.scala
+2023.11.01 12:39:54 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/Sensor.scala
+2023.11.01 12:43:32 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:43:49 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 12:43:49 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 12:43:49 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 12:43:56 WARN  Could not find semantic tokens for: file:///Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 12:44:41 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 12:46:06 ERROR Failed to tokenize input for semantic tokens for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+scala.meta.tokenizers.TokenizeException: <input>:11: error: unclosed character literal
+        Behaviors.setup[Rece']
+                            ^
+	at scala.meta.internal.tokenizers.Reporter.syntaxError(Reporter.scala:23)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError$(Reporter.scala:23)
+	at scala.meta.internal.tokenizers.Reporter$$anon$1.syntaxError(Reporter.scala:33)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError(Reporter.scala:25)
+	at scala.meta.internal.tokenizers.Reporter.syntaxError$(Reporter.scala:25)
+	at scala.meta.internal.tokenizers.Reporter$$anon$1.syntaxError(Reporter.scala:33)
+	at scala.meta.internal.tokenizers.LegacyScanner.fetchSingleQuote$1(LegacyScanner.scala:407)
+	at scala.meta.internal.tokenizers.LegacyScanner.fetchToken(LegacyScanner.scala:412)
+	at scala.meta.internal.tokenizers.LegacyScanner.nextToken(LegacyScanner.scala:211)
+	at scala.meta.internal.tokenizers.LegacyScanner.foreach(LegacyScanner.scala:1011)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.uncachedTokenize(ScalametaTokenizer.scala:24)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.$anonfun$tokenize$1(ScalametaTokenizer.scala:17)
+	at scala.collection.concurrent.TrieMap.getOrElseUpdate(TrieMap.scala:962)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.tokenize(ScalametaTokenizer.scala:17)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer$$anon$2.apply(ScalametaTokenizer.scala:332)
+	at scala.meta.tokenizers.Api$XtensionTokenizeDialectInput.tokenize(Api.scala:25)
+	at scala.meta.tokenizers.Api$XtensionTokenizeInputLike.tokenize(Api.scala:14)
+	at scala.meta.internal.metals.SemanticTokensProvider$.getTokens(SemanticTokensProvider.scala:28)
+	at scala.meta.internal.metals.SemanticTokensProvider$.provide(SemanticTokensProvider.scala:89)
+	at scala.meta.internal.metals.Compilers.$anonfun$semanticTokens$3(Compilers.scala:539)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:467)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+Nov 01, 2023 12:46:47 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/.metals/.reports/metals-full/2023-11-01/r_compiler-error_12-46-47-095.md
+Nov 01, 2023 12:47:01 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2524
+2023.11.01 12:47:28 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:47:28 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:47:32 WARN  Using indexes to guess the definition of DroneServiceKey
+2023.11.01 12:47:45 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 12:48:29 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 12:48:36 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 12:50:08 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+Nov 01, 2023 12:51:19 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3111
+2023.11.01 12:51:20 WARN  Using indexes to guess the definition of DroneManager
+2023.11.01 12:51:36 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:53:22 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 12:54:16 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+Nov 01, 2023 12:54:57 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3282
+2023.11.01 12:55:23 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 12:56:29 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:56:43 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 12:57:22 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 12:58:43 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 12:59:27 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 13:00:58 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 13:03:53 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/AkkaKalman.scala
+2023.11.01 16:51:44 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 16:54:28 WARN  Using indexes to guess the definition of App
+2023.11.01 16:54:30 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 16:54:59 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 16:55:16 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 16:55:29 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 16:56:26 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 16:56:46 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 16:58:01 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 16:58:38 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 16:59:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 17:01:29 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 17:01:35 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 17:10:23 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 17:10:32 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 17:13:37 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 17:21:30 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/StatsWorker.scala
+2023.11.01 17:21:51 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+Exception in thread "pool-3-thread-2" java.lang.Error: java.lang.InterruptedException
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1155)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.InterruptedException
+	at scala.meta.internal.metals.FutureCancelToken.checkCanceled(FutureCancelToken.scala:29)
+	at scala.meta.internal.pc.CompilerAccess.onCompilerJobQueue$$anonfun$1(CompilerAccess.scala:230)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:152)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	... 2 more
+2023.11.01 17:22:22 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 17:22:35 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 17:26:05 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 17:26:11 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 17:26:23 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 17:26:32 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+Nov 01, 2023 5:43:16 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 4817
+2023.11.01 17:51:07 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/transformation/App.scala
+2023.11.01 19:05:12 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 19:05:17 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 19:05:30 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 19:05:32 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.01 19:09:03 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.01 19:10:29 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 19:11:52 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/simple/App.scala
+2023.11.01 19:14:28 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 19:14:51 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 19:18:07 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.01 19:19:20 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.02 11:49:51 INFO  Shutting down server
+2023.11.02 11:49:51 INFO  shutting down Metals
+2023.11.02 11:49:51 INFO  Exiting server
+2023.11.02 16:01:10 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.84.0.
+2023.11.02 16:01:12 WARN  Build server is not auto-connectable.
+2023.11.02 16:01:12 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.11.02 16:01:12 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.11.02 16:01:17 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.11.02 16:01:21 INFO  time: code lens generation in 7.95s
+2023.11.02 16:10:16 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/AkkaKalman.scala
+Nov 02, 2023 4:10:17 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 17
+2023.11.02 16:10:34 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.02 16:10:44 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.03 21:00:42 INFO  Shutting down server
+2023.11.03 21:00:42 INFO  shutting down Metals
+2023.11.03 21:00:42 INFO  Exiting server
+2023.11.10 15:31:52 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.84.0.
+2023.11.10 15:31:55 WARN  Build server is not auto-connectable.
+2023.11.10 15:31:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.11.10 15:31:56 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.11.10 15:32:00 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.11.10 15:32:05 INFO  time: code lens generation in 9.79s
+2023.11.10 15:32:05 INFO  time: code lens generation in 9.97s
+2023.11.10 15:40:29 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+Nov 10, 2023 3:40:29 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 12
+2023.11.10 15:40:29 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.10 17:47:40 INFO  Shutting down server
+2023.11.10 17:47:40 INFO  shutting down Metals
+2023.11.10 17:47:40 INFO  Exiting server
+2023.11.24 16:45:59 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.84.2.
+2023.11.29 13:04:14 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.84.2.
+2023.11.29 13:04:15 WARN  Build server is not auto-connectable.
+2023.11.29 13:04:16 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.11.29 13:04:16 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.11.29 13:04:20 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.11.29 13:04:25 INFO  time: code lens generation in 7.79s
+2023.11.29 13:04:25 INFO  time: code lens generation in 8.12s
+2023.11.29 13:23:51 INFO  Shutting down server
+2023.11.29 13:23:51 INFO  shutting down Metals
+2023.11.29 13:23:51 INFO  Exiting server
+2023.12.08 13:14:01 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.84.2.
+2023.12.08 13:14:04 WARN  Build server is not auto-connectable.
+2023.12.08 13:14:04 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2023.12.08 13:14:04 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2023.12.08 13:14:08 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2023.12.08 13:14:11 INFO  time: code lens generation in 7.18s
+2023.12.08 13:14:11 INFO  time: code lens generation in 7.4s
+2023.12.08 14:23:47 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/MyDrone.scala
+2023.12.08 14:23:54 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/KalmanMain.scala
+2023.12.08 14:23:57 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/AkkaQuickstart.scala
+2023.12.08 14:24:02 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/GlobalStateCalc.scala
+2023.12.08 14:24:03 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/DroneSensor.scala
+2023.12.08 14:24:07 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/DroneKalmanEstimator.scala
+2023.12.08 14:24:08 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/AvgMeasurementCalc.scala
+2023.12.08 14:24:11 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/AvgCovarianceCalc.scala
+2023.12.08 14:24:12 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/AkkaQuickstart.scala
+2023.12.08 14:24:14 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/test/scala/com/example/AkkaQuickstartSpec.scala
+2023.12.08 14:26:13 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2023.12.08 14:26:15 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2023.12.09 19:46:03 INFO  Shutting down server
+2023.12.09 19:46:03 INFO  shutting down Metals
+2023.12.09 19:46:03 INFO  Exiting server
+2024.01.05 11:09:06 INFO  Started: Metals version 1.1.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.85.0.
+2024.01.05 11:09:08 WARN  Build server is not auto-connectable.
+2024.01.05 11:09:08 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2024.01.05 11:09:08 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2024.01.05 11:09:08 INFO  Shutting down server
+2024.01.05 11:09:08 INFO  shutting down Metals
+2024.01.08 11:08:44 INFO  Started: Metals version 1.2.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.85.1.
+2024.01.08 11:08:46 WARN  Build server is not auto-connectable.
+2024.01.08 11:08:46 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala
+2024.01.08 11:08:46 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+Jan 08, 2024 11:08:47 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2024.01.08 11:08:50 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/stats/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.01.08 11:08:54 INFO  time: code lens generation in 7.11s
+Jan 08, 2024 11:09:44 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2024.01.08 11:10:04 INFO  Shutting down server
+2024.01.08 11:10:04 INFO  shutting down Metals
+2024.01.08 11:10:04 INFO  Exiting server
+2024.01.08 11:31:27 INFO  Started: Metals version 1.2.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.85.1.
+2024.01.08 11:31:28 WARN  Build server is not auto-connectable.
+2024.01.08 11:32:48 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/AkkaQuickstart.scala
+2024.01.08 11:32:53 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/AkkaQuickstart.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.01.08 11:32:56 INFO  time: code lens generation in 4.32s
+2024.01.08 11:32:56 INFO  time: code lens generation in 1.27s
+2024.01.08 11:32:56 INFO  time: code lens generation in 6.77s
+2024.01.08 11:32:57 INFO  time: code lens generation in 5.83s
+2024.01.08 11:33:20 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/MyDrone.scala
+2024.01.08 11:33:22 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/DroneSensor.scala
+2024.01.08 11:33:23 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/GlobalStateCalc.scala
+2024.01.08 11:33:24 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/MyDrone.scala
+2024.01.08 11:33:24 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/src/main/scala/com/example/KalmanMain.scala
+2024.01.08 11:33:50 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2024.01.08 11:48:09 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2024.01.08 11:48:10 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2024.01.08 15:07:59 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2024.01.08 15:08:16 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2024.01.08 15:12:02 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+Jan 08, 2024 3:12:02 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 117
+2024.01.08 15:12:03 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2024.01.08 15:36:00 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/simple/App.scala
+2024.01.08 15:36:35 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/simple/ClusterListener.scala
+2024.01.08 15:36:41 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/simple/App.scala
+2024.01.08 21:45:52 INFO  Shutting down server
+2024.01.08 21:45:52 INFO  shutting down Metals
+2024.01.08 21:45:52 INFO  Exiting server
+2024.01.08 21:47:07 INFO  Started: Metals version 1.2.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.85.1.
+2024.01.08 21:47:09 WARN  Build server is not auto-connectable.
+2024.01.08 21:47:09 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2024.01.08 21:47:13 INFO  Shutting down server
+2024.01.08 21:47:13 INFO  shutting down Metals
+2024.01.08 21:47:15 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.01.09 10:57:37 INFO  Started: Metals version 1.2.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.85.1.
+2024.01.09 10:57:42 WARN  Build server is not auto-connectable.
+2024.01.09 10:57:42 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2024.01.09 10:57:49 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.01.09 10:57:52 INFO  time: code lens generation in 10s
+2024.01.09 10:58:13 INFO  Shutting down server
+2024.01.09 10:58:13 INFO  shutting down Metals
+2024.01.09 10:58:13 INFO  Exiting server
+2024.01.09 10:58:30 INFO  Started: Metals version 1.2.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.85.1.
+2024.01.09 10:58:32 WARN  Build server is not auto-connectable.
+2024.01.09 10:58:32 INFO  skipping build import with status 'Dismissed'
+2024.01.09 10:58:32 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2024.01.09 10:58:35 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.01.09 10:58:39 INFO  time: code lens generation in 7.01s
+2024.01.09 12:18:11 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/DroneManager.scala
+2024.01.09 12:18:14 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/MyDrone.scala
+2024.01.10 21:12:29 INFO  Shutting down server
+2024.01.10 21:12:29 INFO  shutting down Metals
+2024.01.10 21:12:29 INFO  Exiting server
+2024.01.10 21:13:44 INFO  Started: Metals version 1.2.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.85.1.
+2024.01.10 21:13:45 WARN  Build server is not auto-connectable.
+2024.01.10 21:13:45 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2024.01.10 21:13:45 ERROR Unexpected error initializing server: 
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequest failed with message: Canceled
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2024.01.10 21:13:50 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.01.12 14:09:30 INFO  Started: Metals version 1.2.0 in folders '/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect' for client Visual Studio Code 1.85.1.
+2024.01.12 14:09:31 WARN  Build server is not auto-connectable.
+2024.01.12 14:09:32 WARN  no build target for: /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala
+2024.01.12 14:09:36 INFO  no build target found for /Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/akka-cluster/src/main/scala/sample/cluster/actordetrack/App.scala. Using presentation compiler with project's scala-library version: 3.3.1
+2024.01.12 14:09:47 INFO  Shutting down server
+2024.01.12 14:09:47 INFO  shutting down Metals
+2024.01.12 14:09:47 INFO  Exiting server

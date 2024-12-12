@@ -2,11 +2,13 @@ package com.example
 import akka.actor.typed.ActorRef
 import akka.actor.typed.Behavior
 import akka.actor.typed.scaladsl.Behaviors
+import scala.util.Random
 // import akka.actor.typed.receptionist.Receptionist
 // import org.apache.commons.math3.linear.ArrayRealVector
 
 import scala.concurrent.duration._
 import akka.actor.Actor
+import java.lang.annotation.Target
 
 
 trait SensorEvent extends Event
@@ -15,17 +17,26 @@ case class Estimate(data: Double,old: Double, sender: ActorRef[SensorEvent]) ext
 case class Measurement(data: Double, sender: ActorRef[SensorEvent]) extends SensorEvent
 
 
+
 object Drone {
         def apply(id:Int, isLeader: Boolean = false): Behavior[Event] = Behaviors.setup{ context =>
             // Starting up the actor -- but wait till the graph is done
             val myID = id
             val leader = isLeader // Lets me know if I am the leader node
-            var neighbors =  scala.collection.mutable.ListBuffer[ActorRef[GraphCreate]]()
+            val neighbors =  scala.collection.mutable.ListBuffer[ActorRef[GraphCreate]]()
+            val targets = scala.collection.mutable.ListBuffer[ActorRef[TargetD]]()
             var nCount = 0
+            var tgtCount = 0
 
             def addNeigbour(neighbour: ActorRef[GraphCreate]): Unit = {
-                neighbors = neighbors:+neighbour // append the new element as the list
+                neighbors += neighbour // append the new element as the list
                 nCount = nCount+1
+            }
+
+            def addTarget(tgt: ActorRef[TargetD]): Unit ={
+                targets += tgt
+                tgtCount = tgtCount + 1
+                // targets.size
             }
 
             def graphCreation(): Behavior[Event] =  Behaviors.receiveMessage{ 
@@ -47,11 +58,24 @@ object Drone {
                     // Will handle data passing stuff later
                     Behaviors.receiveMessage {
                         case Measurement(data,sender) =>
+                            // May need code to resolve the targets
+                            var isNew = isNewTarget(data)
+                            // Drone would need to resolve the target and then send the data to the target
+                            if (isNew == true){
+                                val tName = s"target${tgtCount}"
+                                var newtgt = context.spawn(TargetNode(tgtCount,myID,context.self),tName)
+                                addTarget(newtgt)
+                                newtgt ! TargetData(data,context.self)
+                            }
                             estimator ! Measurement(data,context.self)
                             Behaviors.same 
                         
                         case Estimate(data,old,sender) =>
                             sensor ! Estimate(data,old,context.self)
+                            Behaviors.same
+
+                        case TargetAck =>
+                            context.log.info(s"Drone ${myID} received a target ACK")
                             Behaviors.same
                     }
                     // Set up a behavior receive code here
@@ -60,6 +84,18 @@ object Drone {
             // The behaviour to start with
 
             graphCreation()
+        }
+
+
+
+        def isNewTarget(data: Double) : Boolean ={
+             val r = new Random()
+             val myInt = r.nextInt(50)
+             if (myInt < 10){
+                true
+             } else{
+                false
+             }
         }
 
 }

@@ -11,6 +11,7 @@ import scala.io.Source._
 trait TargetD extends SensorEvent
 case object TargetAck extends TargetD
 case class TargetData(data: Double, sender: ActorRef[SensorEvent]) extends TargetD
+case class KalmanEstimateD(data: Double, sender: ActorRef[TargetD]) extends TargetD
 // Measurement(data: Double, sender: ActorRef[SensorEvent])
 // case object 
 
@@ -22,7 +23,7 @@ object TargetNode{
         val parentDroneID = dID
         val parentAddr = parent
         context.log.info(s" Target ${tid} has been created and assigned to drone ${parentDroneID} ")
-
+        // val estimator = context.spawn(KalmanEstimator(tid,context.self),"estimator")
         Behaviors.receiveMessage {
             case TargetData(data, sender) =>
                 context.log.info(s" Target ${tid} actor received the measurement")

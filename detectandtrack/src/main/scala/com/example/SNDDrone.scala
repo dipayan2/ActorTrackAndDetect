@@ -14,6 +14,8 @@ import java.lang.annotation.Target
 trait SensorEvent extends Event
 case object Start extends SensorEvent
 case class Estimate(data: Double,old: Double, sender: ActorRef[SensorEvent]) extends SensorEvent
+case object SendData extends SensorEvent
+case object NextData extends SensorEvent
 case class Measurement(data: Double, sender: ActorRef[SensorEvent]) extends SensorEvent
 
 
@@ -54,7 +56,8 @@ object Drone {
             def startNode: Behavior[Event] = Behaviors.setup { context =>
                     context.log.info(s"${myID} -- Node started")
                     val sensor = context.spawn(Sensor(id,context.self),"sensor")
-                    val estimator = context.spawn(KalmanEstimator(id,context.self),"estimator")
+                    sensor ! Start
+                    // val estimator = context.spawn(KalmanEstimator(id,context.self),"estimator")
                     // Will handle data passing stuff later
                     Behaviors.receiveMessage {
                         case Measurement(data,sender) =>
@@ -67,7 +70,7 @@ object Drone {
                                 addTarget(newtgt)
                                 newtgt ! TargetData(data,context.self)
                             }
-                            estimator ! Measurement(data,context.self)
+                            // estimator ! Measurement(data,context.self)
                             Behaviors.same 
                         
                         case Estimate(data,old,sender) =>
@@ -81,7 +84,7 @@ object Drone {
                     // Set up a behavior receive code here
             }
 
-            // The behaviour to start with
+            // We should add a logic for sensor crashing and then sending the trigger to restart
 
             graphCreation()
         }

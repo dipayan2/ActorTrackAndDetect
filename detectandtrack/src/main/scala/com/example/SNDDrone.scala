@@ -55,7 +55,7 @@ object Drone {
             // Logic when the node is started. Create the sensor nodes and fireup the estimator node too
             def startNode: Behavior[Event] = Behaviors.setup { context =>
                     context.log.info(s"${myID} -- Node started")
-                    val sensor = context.spawn(Sensor(id,context.self),"sensor")
+                    val sensor = context.spawn(Sensor(myID,context.self),"sensor")
                     sensor ! Start
                     // val estimator = context.spawn(KalmanEstimator(id,context.self),"estimator")
                     // Will handle data passing stuff later

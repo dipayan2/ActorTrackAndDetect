@@ -23,14 +23,23 @@ object TargetNode{
         val parentDroneID = dID
         val parentAddr = parent
         val estimator = context.spawn(KalmanEstimator(id,context.self),"estimator")
+
+        def updateState(data:Double):Unit={
+            var myState = data+1
+        }cha
+
         context.log.info(s" Target ${tid} has been created and assigned to drone ${parentDroneID} ")
         // val estimator = context.spawn(KalmanEstimator(tid,context.self),"estimator")
         Behaviors.receiveMessage {
             case TargetData(data, sender) =>
                 context.log.info(s" Target ${tid} actor received the measurement")
+                // update state, maybe kalman state
+                updateState(data)
                 sender ! TargetAck
                 Behaviors.same
         }
 
     }
+
+    // def 
 }

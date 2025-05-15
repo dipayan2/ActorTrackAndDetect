@@ -10,6 +10,11 @@ import scala.concurrent.duration._
 import scala.util.Random
 import scala.io.Source._
 
+
+
+
+
+
 // case object Start extends SensorEvent
 case object Restart extends SensorEvent
 // case object SendData extends SensorEvent
@@ -46,7 +51,8 @@ object Sensor{
             idle
           
           case SendData =>
-            parentDrone ! Measurement(generateData(constantVoltage,measurementNoise), context.self)
+            val ImgRead = generateMatrixList(9)
+            parentDrone ! Measurement(ImgRead, context.self)
             msgCounter = msgCounter +1
             Behaviors.same 
 
@@ -92,6 +98,20 @@ object Sensor{
   //   }
 
   // }
+
+
+  def genMatrix(): Matrix2x2 = {
+    Matrix2x2(
+      Random.between(-10.0, 10.0),
+      Random.between(-10.0, 10.0),
+      Random.between(-10.0, 10.0),
+      Random.between(-10.0, 10.0)
+    )  
+  }
+
+  def generateMatrixList(n: Int): List[Matrix2x2] = {
+    List.fill(n)(generateRandomMatrix())
+  }
 
   def generateData(mean: Double, std: Double): Double ={
     val r = new Random()

@@ -9,6 +9,7 @@ import scala.util.Random
 import scala.concurrent.duration._
 import akka.actor.Actor
 import java.lang.annotation.Target
+import javax.sound.sampled.TargetDataLine
 
 
 trait SensorEvent extends Event
@@ -16,15 +17,20 @@ case object Start extends SensorEvent
 case class Estimate(data: Double,old: Double, sender: ActorRef[SensorEvent]) extends SensorEvent
 case object SendData extends SensorEvent
 case object NextData extends SensorEvent
-case class Measurement(data: Double, sender: ActorRef[SensorEvent]) extends SensorEvent
+case class Matrix2x2(a11: Double, a12: Double, a21: Double, a22: Double)
+case class MatrixList(matrices: List[Matrix2x2]) extends SensorEvent
+case class Measurement(data: MatrixList, sender: ActorRef[SensorEvent]) extends SensorEvent
 
 
 
 object Drone {
-        def apply(id:Int, isLeader: Boolean = false): Behavior[Event] = Behaviors.setup{ context =>
+        def apply(id:Int, xpos:Int = 0, ypos:Int = 0, xrange:Int = 10, yrange:Int = 10 ,isLeader: Boolean = false): Behavior[Event] = Behaviors.setup{ context =>
             // Starting up the actor -- but wait till the graph is done
             val myID = id
             val leader = isLeader // Lets me know if I am the leader node
+            val x_loc = xpos
+            val y_loc = ypos
+            
             val neighbors =  scala.collection.mutable.ListBuffer[ActorRef[GraphCreate]]()
             val targets = scala.collection.mutable.ListBuffer[ActorRef[TargetD]]()
             var nCount = 0
@@ -39,6 +45,14 @@ object Drone {
                 targets += tgt
                 tgtCount = tgtCount + 1
                 // targets.size
+            }
+
+            def targetBehaviour(data: Double): Unit={
+                // Mapping the data index to the actor index 
+                for (target <- targets){
+                    target ! TargetData(data, context.self) // Where does the resolution takes place
+                }
+
             }
 
             def graphCreation(): Behavior[Event] =  Behaviors.receiveMessage{ 
@@ -61,6 +75,7 @@ object Drone {
                     // Will handle data passing stuff later
                     Behaviors.receiveMessage {
                         case Measurement(data,sender) =>
+                            targetBehaviour(data)
                             // May need code to resolve the targets
                             var isNew = isNewTarget(data)
                             // Drone would need to resolve the target and then send the data to the target
@@ -68,9 +83,10 @@ object Drone {
                                 val tName = s"target${tgtCount}"
                                 var newtgt = context.spawn(TargetNode(tgtCount,myID,context.self),tName)
                                 addTarget(newtgt)
-                                newtgt ! TargetData(data,context.self)
+                                // newtgt ! TargetData(data,context.self)
                             }
                             // estimator ! Measurement(data,context.self)
+                            targetBehaviour(data)
                             Behaviors.same 
                         
                         case Estimate(data,old,sender) =>

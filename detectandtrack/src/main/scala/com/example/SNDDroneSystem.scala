@@ -26,7 +26,7 @@ object DroneSystem{
     def apply(): Behavior[Generate] = Behaviors.setup{ context =>
 
         // Say we generate three nodes and then put them as neighbours
-        val drone0 = context.spawn(Drone(0,true),"drone0") // This is the leader
+        val drone0 = context.spawn(Drone(0,isLeader=true),"drone0") // This is the leader
         val drone1 = context.spawn(Drone(1),"drone1")
         val drone2 = context.spawn(Drone(2),"drone2")
 

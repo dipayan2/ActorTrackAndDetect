@@ -10,7 +10,13 @@ import scala.concurrent.duration._
 import scala.util.Random
 import scala.io.Source._
 
-
+/**
+ *  Sensor Node: 
+ *  1. Read the files or the time stamped file here at an interval, we can make this event based too
+ *  2. Send the data to the parent drone, which will just be the image locations we have
+ *      a. Currently we create a list of matrix, and send that to the sensors
+ *  3. Repeat every interval 
+*/
 
 
 
@@ -64,59 +70,39 @@ object Sensor{
             running
           
         }
-
-        idle // Need to have the compile part inside the behavior timer
+        /*
+        * This is the initial state of the sensor
+        */
+        idle 
       }
 
     
 
   }
 
-  // def apply1(id: Int, drone: ActorRef[SensorEvent]): Behavior[SensorEvent] = Behaviors.setup{ context =>
 
-  //   context.log.info(s"Starting Sensor for Drone ${id}")
-  //   var msgCounter = 0
-  //   val parentDrone = drone
-  //   val sid = id
-  //   var z = generateData(constantVoltage,measurementNoise)
-  //   drone ! Measurement(z,context.self)
-
-  //   msgCounter = msgCounter+1 
-
-
-  //   Behaviors.receiveMessage{
-  //       case SendData=>
-  //           context.log.info(s"${sid} Sensor asked to send data ")
-  //           drone ! Measurement(generateData(constantVoltage,measurementNoise), context.self)
-  //           msgCounter = msgCounter +1
-  //           if (msgCounter > 10){
-  //               context.log.info(s"${sid} -- my sensor has sent enough data, now we rest")
-  //               Behaviors.stopped
-  //           } else{
-  //               Behaviors.same
-  //           }
-  //   }
-
-  // }
-
+/**
+ * A function to simulate the image we should read for a given section
+*/
 
   def genMatrix(): Matrix2x2 = {
     Matrix2x2(
-      Random.between(-10.0, 10.0),
-      Random.between(-10.0, 10.0),
       Random.between(-10.0, 10.0),
       Random.between(-10.0, 10.0)
     )  
   }
 
-  def generateMatrixList(n: Int): List[Matrix2x2] = {
-    List.fill(n)(generateRandomMatrix())
+/**
+ * This is a list of matrix, to simulate the number of target we get
+*/
+  def generateMatrixList(n: Int): MatrixList = {
+    MatrixList(List.fill(n)(genMatrix()))
   }
 
-  def generateData(mean: Double, std: Double): Double ={
-    val r = new Random()
-    mean + r.nextGaussian()*std
-  }
+  // def generateData(mean: Double, std: Double): Double ={
+  //   val r = new Random()
+  //   mean + r.nextGaussian()*std
+  // }
 
 
 }

@@ -10,8 +10,8 @@ import scala.io.Source._
 
 trait TargetD extends SensorEvent
 case object TargetAck extends TargetD
-case class TargetData(data: Double, sender: ActorRef[SensorEvent]) extends TargetD
-case class KalmanEstimateD(data: Double, sender: ActorRef[TargetD]) extends TargetD
+case class TargetData(data: Matrix2x2, sender: ActorRef[SensorEvent]) extends TargetD
+case class KalmanEstimate(data: Matrix2x2, sender: ActorRef[Observe]) extends TargetD
 // Measurement(data: Double, sender: ActorRef[SensorEvent])
 // case object 
 
@@ -22,11 +22,9 @@ object TargetNode{
         val tid = id
         val parentDroneID = dID
         val parentAddr = parent
-        val estimator = context.spawn(KalmanEstimator(id,context.self),"estimator")
+        val estimator = context.spawn(KalmanFilterActor(),"estimator")
+        var state = Matrix2x2(0,0)
 
-        def updateState(data:Double):Unit={
-            var myState = data+1
-        }cha
 
         context.log.info(s" Target ${tid} has been created and assigned to drone ${parentDroneID} ")
         // val estimator = context.spawn(KalmanEstimator(tid,context.self),"estimator")
@@ -34,8 +32,11 @@ object TargetNode{
             case TargetData(data, sender) =>
                 context.log.info(s" Target ${tid} actor received the measurement")
                 // update state, maybe kalman state
-                updateState(data)
-                sender ! TargetAck
+                estimator ! Observe(data,1.0,context.self)
+                /**
+                 * We should send the updated state of the target, to the drone. Or just the effective ID
+                */
+                // sender ! TargetAck
                 Behaviors.same
         }
 

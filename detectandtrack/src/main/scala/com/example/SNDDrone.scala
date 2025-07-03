@@ -17,7 +17,7 @@ case object Start extends SensorEvent
 case class Estimate(data: Double,old: Double, sender: ActorRef[SensorEvent]) extends SensorEvent
 case object SendData extends SensorEvent
 case object NextData extends SensorEvent
-case class Matrix2x2(a11: Double, a12: Double, a21: Double, a22: Double)
+case class Matrix2x2(x: Double, y: Double) extends SensorEvent
 case class MatrixList(matrices: List[Matrix2x2]) extends SensorEvent
 case class Measurement(data: MatrixList, sender: ActorRef[SensorEvent]) extends SensorEvent
 
@@ -47,12 +47,11 @@ object Drone {
                 // targets.size
             }
 
-            def targetBehaviour(data: Double): Unit={
+            def targetBehaviour(data: MatrixList): Unit={
                 // Mapping the data index to the actor index 
-                for (target <- targets){
-                    target ! TargetData(data, context.self) // Where does the resolution takes place
+                for (idx <- targets.indices){
+                    targets(idx) ! TargetData(data.matrices(idx), context.self) // Where does the resolution takes place
                 }
-
             }
 
             def graphCreation(): Behavior[Event] =  Behaviors.receiveMessage{ 
@@ -66,32 +65,39 @@ object Drone {
                     context.log.info(s"${myID} -- All node added")
                     startNode
             }
-            // Logic when the node is started. Create the sensor nodes and fireup the estimator node too
+            /**
+             * The operation of the drone starts here
+             * 1. We start the sensor for this node, and start receiving information from the sensor
+             * 2. Assume the following algorithm -- that we can identify the expected object location, and then find an object there
+            */
             def startNode: Behavior[Event] = Behaviors.setup { context =>
                     context.log.info(s"${myID} -- Node started")
+                    /**
+                     * Starting the timed sensor node -- this will supply the information to the drone
+                    */
                     val sensor = context.spawn(Sensor(myID,context.self),"sensor")
                     sensor ! Start
-                    // val estimator = context.spawn(KalmanEstimator(id,context.self),"estimator")
-                    // Will handle data passing stuff later
+                    /**
+                     * Create a set of dummy targets of size 9
+                    */
+
+                    for (i <- 0 to 8){
+                        val target = context.spawn(TargetNode(tgtCount,myID, context.self),s"target-node-$tgtCount")
+                        addTarget(target)
+                    }
+                    /**
+                     * End if dummy targets
+                    */
                     Behaviors.receiveMessage {
                         case Measurement(data,sender) =>
+                            /**
+                             * Create a process to get the location of the objects, which for now is the value it returns
+                             * Assume we have the updated states for each target
+                            */
+
                             targetBehaviour(data)
-                            // May need code to resolve the targets
-                            var isNew = isNewTarget(data)
-                            // Drone would need to resolve the target and then send the data to the target
-                            if (isNew == true){
-                                val tName = s"target${tgtCount}"
-                                var newtgt = context.spawn(TargetNode(tgtCount,myID,context.self),tName)
-                                addTarget(newtgt)
-                                // newtgt ! TargetData(data,context.self)
-                            }
-                            // estimator ! Measurement(data,context.self)
-                            targetBehaviour(data)
+                            
                             Behaviors.same 
-                        
-                        case Estimate(data,old,sender) =>
-                            sensor ! Estimate(data,old,context.self)
-                            Behaviors.same
 
                         case TargetAck =>
                             context.log.info(s"Drone ${myID} received a target ACK")
@@ -106,15 +112,5 @@ object Drone {
         }
 
 
-
-        def isNewTarget(data: Double) : Boolean ={
-             val r = new Random()
-             val myInt = r.nextInt(50)
-             if (myInt < 10){
-                true
-             } else{
-                false
-             }
-        }
 
 }

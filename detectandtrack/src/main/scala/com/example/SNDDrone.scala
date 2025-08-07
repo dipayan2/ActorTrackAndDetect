@@ -20,7 +20,7 @@ case object NextData extends SensorEvent
 case class Matrix2x2(x: Double, y: Double) extends SensorEvent
 case class MatrixList(matrices: List[Matrix2x2]) extends SensorEvent
 case class Measurement(data: MatrixList, sender: ActorRef[SensorEvent]) extends SensorEvent
-
+case class TargetData(id: Int, ref:ActorRef[TargetD], x:Double, y:Double, rowX:Int, rowY:Int) extends SensorEvent
 
 
 object Drone {
@@ -32,7 +32,8 @@ object Drone {
             val y_loc = ypos
             
             val neighbors =  scala.collection.mutable.ListBuffer[ActorRef[GraphCreate]]()
-            val targets = scala.collection.mutable.ListBuffer[ActorRef[TargetD]]()
+            val targets = scala.collection.mutable.ListBuffer[TargetData]()
+            val targetMap = scala.collection.mutable.Map[(Int,Int), List[Int]]()
             var nCount = 0
             var tgtCount = 0
 
@@ -41,17 +42,37 @@ object Drone {
                 nCount = nCount+1
             }
 
-            def addTarget(tgt: ActorRef[TargetD]): Unit ={
-                targets += tgt
+            def addTarget(tgt: TargetData): Unit ={
+                targets += tgt    
+                val updatedList = targetMap.getOrElse((tgt.rowX,tgt.rowY), List()) :+ tgtCount
+                targetMap.update((tgt.rowX,tgt.rowY), updatedList)
                 tgtCount = tgtCount + 1
                 // targets.size
             }
 
             def targetBehaviour(data: MatrixList): Unit={
-                // Mapping the data index to the actor index 
-                for (idx <- targets.indices){
-                    targets(idx) ! TargetData(data.matrices(idx), context.self) // Where does the resolution takes place
+
+                for(idx <- data.matrices.indices){
+                    // We go through the data
+                    val (obsX, obsY) = (data.matrices(idx).x, data.matrices(idx).y)
+                    val (rowX,rowY) = coordinateToGridIndex(obsX,obsY)
+
+                    if(targetMap.contains((rowX,rowY))){
+                        for (targIdx <- targetMap((rowX,rowY)) ){
+                            targets(targIdx).ref ! TargetData(data.matrices(idx), context.self)
+                        }
+                    } 
+                    else{
+                        val tref = context.spawn(TargetNode(tgtCount,myID, context.self),s"target-node-$tgtCount")
+                        val tdata = TargetData(tgtCount,tref,obsX, obsY,rowX,rowY)
+                        addTarget(tdata)
+                    }
                 }
+
+                // Mapping the data index to the actor index 
+                // for (idx <- targets.indices){
+                //     targets(idx).ref ! TargetData(data.matrices(idx%9), context.self) // Where does the resolution takes place
+                // }
             }
 
             def graphCreation(): Behavior[Event] =  Behaviors.receiveMessage{ 
@@ -81,10 +102,10 @@ object Drone {
                      * Create a set of dummy targets of size 9
                     */
 
-                    for (i <- 0 to 8){
-                        val target = context.spawn(TargetNode(tgtCount,myID, context.self),s"target-node-$tgtCount")
-                        addTarget(target)
-                    }
+                    // for (i <- 0 to 1000){
+                    //     val target = context.spawn(TargetNode(tgtCount,myID, context.self),s"target-node-$tgtCount")
+                    //     addTarget(target)
+                    // }
                     /**
                      * End if dummy targets
                     */
@@ -110,6 +131,14 @@ object Drone {
 
             graphCreation()
         }
+
+
+        def coordinateToGridIndex(x: Double, y: Double, cellWidth: Double=2.0, cellHeight: Double=2.0): (Int, Int) = {
+            val column = (x / cellWidth).toInt
+            val row = (y / cellHeight).toInt
+            (row, column)
+        }
+
 
 
 

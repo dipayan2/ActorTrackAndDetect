@@ -30,7 +30,7 @@ object TargetNode{
         // val estimator = context.spawn(KalmanEstimator(tid,context.self),"estimator")
         Behaviors.receiveMessage {
             case TargetData(data, sender) =>
-                context.log.info(s" Target ${tid} - D${dID} actor received the measurement")
+                context.log.info(s" Target ${tid} - D${parentDroneID} actor received the measurement")
                 // update state, maybe kalman state
                 estimator ! Observe(data,1.0,context.self)
                 /**
@@ -40,11 +40,11 @@ object TargetNode{
                 Behaviors.same
             
             case KalmanEstimate(data) =>
-                context.log.info(s" Target ${tid} expected next position is ${data.x} and ${data.y}")
+                context.log.info(s" Target ${tid} - D ${parentDroneID}expected next position is ${data.x} and ${data.y}")
                 Behaviors.same
         }
 
     }
 
-    // def 
+ 
 }

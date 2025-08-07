@@ -49,7 +49,7 @@ object Sensor{
           case Restart =>
             context.log.info(s"${sid} Node restarting ")
             timers.cancel("data-sender")
-            timers.startTimerWithFixedDelay("data-sender", SendData, 1.second)
+            timers.startTimerWithFixedDelay("data-sender", SendData, 40.milliseconds)
             Behaviors.same   
 
           case Stop =>
@@ -57,7 +57,7 @@ object Sensor{
             idle
           
           case SendData =>
-            val ImgRead = generateMatrixList(9)
+            val ImgRead = generateMatrixList(100)
             parentDrone ! Measurement(ImgRead, context.self)
             msgCounter = msgCounter +1
             Behaviors.same 
@@ -87,8 +87,8 @@ object Sensor{
 
   def genMatrix(): Matrix2x2 = {
     Matrix2x2(
-      Random.between(-10.0, 10.0),
-      Random.between(-10.0, 10.0)
+      Random.between(0.0, 10.0),
+      Random.between(0.0, 10.0)
     )  
   }
 

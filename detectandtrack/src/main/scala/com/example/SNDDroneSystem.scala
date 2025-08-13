@@ -54,7 +54,7 @@ object DroneSystem {
 
         context.log.info("=== Setting up neighbor relationships ===")
         
-        // Set up neighbor relationships for 4x4 grid
+
         // Each drone connects to adjacent drones (up, down, left, right, and diagonally)
         for (row <- 0 until 4; col <- 0 until 4) {
             val droneId = row * 4 + col

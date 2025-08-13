@@ -64,7 +64,7 @@ object Sensor {
                 
                 case SendData =>
                     // Generate observations within this drone's specific area
-                    val imgRead = generateMatrixListForArea(100, monitorMinX, monitorMaxX, monitorMinY, monitorMaxY)
+                    val imgRead = generateMatrixListForArea(1000, monitorMinX, monitorMaxX, monitorMinY, monitorMaxY)
                     parentDrone ! Measurement(imgRead, context.self)
                     // msgCounter = msgCounter + 1
                     

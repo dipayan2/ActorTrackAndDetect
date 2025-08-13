@@ -24,7 +24,7 @@ case class Measurement(data: MatrixList, sender: ActorRef[SensorEvent]) extends 
 case class TargetData(id: Int, ref:ActorRef[TargetD], x:Double, y:Double, rowX:Int, rowY:Int) extends SensorEvent
 case class TargetThresholdError(dataID: Int, targetID: Int, distance: Double, expected: Matrix2x2, observed: Matrix2x2) extends SensorEvent
 case class TargetValid(dataID: Int, targetID: Int) extends SensorEvent
-
+case class SharedTargetInfo(targetRef: ActorRef[TargetD], sourceDroneID: Int, targetID: Int, position: Matrix2x2, gridCell: (Int, Int)) extends SensorEvent
 
 object Drone {
     def apply(id: Int, xpos: Int = 0, ypos: Int = 0, xrange: Int = 10, yrange: Int = 10, isLeader: Boolean = false): Behavior[Event] = Behaviors.setup { context =>
@@ -47,6 +47,9 @@ object Drone {
         val neighbors = scala.collection.mutable.ListBuffer[ActorRef[GraphCreate]]()
         val targets = scala.collection.mutable.ListBuffer[TargetData]()
         val targetMap = scala.collection.mutable.Map[(Int, Int), ListBuffer[Int]]() // Fixed type
+
+        val sharedTargets = scala.collection.mutable.ListBuffer[TargetData]()
+        val sharedTargetMap = scala.collection.mutable.Map[(Int, Int), ListBuffer[Int]]()
         var nCount = 0
         var tgtCount = 0
         
@@ -91,6 +94,29 @@ object Drone {
                 context.log.warn(s"Drone $myID: Target ID $tid is out of bounds")
             }
         }
+
+
+        // Check if target is in overlap zone and share with neighbors
+        def isInOverlapZone(obsX: Double, obsY: Double): Boolean = {
+            val overlapThreshold = 5.0 // 5-unit overlap zone
+            val nearLeftBoundary = obsX <= (minX + overlapThreshold)
+            val nearRightBoundary = obsX >= (maxX - overlapThreshold)
+            val nearBottomBoundary = obsY <= (minY + overlapThreshold)
+            val nearTopBoundary = obsY >= (maxY - overlapThreshold)
+            
+            nearLeftBoundary || nearRightBoundary || nearBottomBoundary || nearTopBoundary
+        }
+        
+    //    def shareTargetWithNeighbors(targetRef: ActorRef[TargetD], targetID: Int, position: Matrix2x2, gridCell: (Int, Int)): Unit = {
+    //         if (isInOverlapZone(position.x, position.y)) {
+    //             val sharedInfo = SharedTargetInfo(targetRef, myID, targetID, position, gridCell)
+    //             neighbors.foreach { neighbor =>
+    //                 neighbor ! sharedInfo
+    //             }
+    //             context.log.info(s"Drone $myID: Shared target $targetID at (${position.x}, ${position.y}) with ${neighbors.length} neighbors")
+    //         }
+    //     }
+
 
         def targetBehaviour(data: MatrixList): Unit = {
         // First, create new targets for any unvalidated pending observations from previous calls
@@ -183,10 +209,7 @@ object Drone {
                     context.log.info(s"Drone $myID - Target $targetID successfully processed data $dataID (within threshold)")
                     // Mark this observation as validated
                     validatedObservations += dataID
-                    // Could track statistics here:
-                    // - Count of valid observations per target
-                    // - Success rate tracking
-                    // - Target health monitoring
+
                     Behaviors.same
 
                 case TargetThresholdError(dataID, targetID, distance, expected, observed) =>
@@ -195,13 +218,44 @@ object Drone {
                     context.log.error(s"  Expected: (${expected.x}, ${expected.y})")
                     context.log.error(s"  Observed: (${observed.x}, ${observed.y})")
                     
-                    // Handle the error - options include:
-                    // 1. Reset the target
-                    // 2. Adjust sensor calibration
-                    // 3. Mark target as potentially lost
-                    // 4. Increase uncertainty in tracking
+
                     
                     Behaviors.same
+
+                case SharedTargetInfo(targetRef, sourceDroneID, targetID, position, gridCell) =>
+                    context.log.info(s"Drone $myID received shared target info: Target $targetID from Drone $sourceDroneID at (${position.x}, ${position.y})")
+                    
+                    // Store reference to shared target if it's in our monitoring area
+                    val (obsX, obsY) = (position.x, position.y)
+                    if (obsX >= minX && obsX <= maxX && obsY >= minY && obsY <= maxY) {
+                        val (rowX, rowY) = coordinateToGridIndex(obsX, obsY)
+                        
+                        // Create a composite target ID to avoid conflicts: droneID-targetID
+                        val compositeTargetID = s"$sourceDroneID-$targetID"
+                        
+                        // Check if we already have this shared target (avoid duplicates)
+                        val alreadyExists = sharedTargets.exists(t => 
+                            t.ref == targetRef && math.abs(t.x - obsX) < 0.1 && math.abs(t.y - obsY) < 0.1
+                        )
+                        
+                        if (!alreadyExists) {
+                            // Create a shared target entry with composite ID as the target ID
+                            val sharedTargetData = TargetData(sharedTargets.length, targetRef, obsX, obsY, rowX, rowY)
+                            
+                            // Add to shared targets list and map
+                            sharedTargets += sharedTargetData
+                            val existingSharedTargets = sharedTargetMap.getOrElseUpdate((rowX, rowY), ListBuffer[Int]())
+                            existingSharedTargets += sharedTargets.length - 1
+                            
+                            context.log.info(s"Drone $myID added shared target $compositeTargetID from Drone $sourceDroneID to grid cell ($rowX, $rowY)")
+                            context.log.info(s"Drone $myID now has ${targets.length} local targets and ${sharedTargets.length} shared targets")
+                        } else {
+                            context.log.debug(s"Drone $myID already tracking shared target from Drone $sourceDroneID")
+                        }
+                    }
+                    
+                    Behaviors.same
+
             }
         }
 

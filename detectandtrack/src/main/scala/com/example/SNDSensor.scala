@@ -26,83 +26,81 @@ case object Restart extends SensorEvent
 // case object SendData extends SensorEvent
 case object Stop extends SensorEvent
 
-object Sensor{
+object Sensor {
 
-  // Constants
-  val constantVoltage = 10.0
-  val measurementNoise = 1.0
-  val processNoise = 1e-5
+    // Constants
+    val constantVoltage = 10.0
+    val measurementNoise = 1.0
+    val processNoise = 1e-5
 
-  // New apply with timed data
-  def apply(id: Int, drone: ActorRef[SensorEvent]) : Behavior[SensorEvent] = Behaviors.setup{ context =>
-      context.log.info(s"Starting Sensor for Drone ${id}")
-      var msgCounter = 0
-      val parentDrone = drone
-      val sid = id
 
-      Behaviors.withTimers{ timers =>
+    def apply(id: Int, drone: ActorRef[SensorEvent], minX: Int, maxX: Int, minY: Int, maxY: Int): Behavior[SensorEvent] = Behaviors.setup { context =>
+        context.log.info(s"Starting Sensor for Drone $id - Monitoring area [$minX to $maxX, $minY to $maxY]")
+        // var msgCounter = 0
+        val parentDrone = drone
+        val sid = id
+        
+   
+        val monitorMinX = minX
+        val monitorMaxX = maxX
+        val monitorMinY = minY
+        val monitorMaxY = maxY
 
-        def running: Behavior[SensorEvent] = Behaviors.receiveMessage{
-          case Start =>
-            Behaviors.same 
-          
-          case Restart =>
-            context.log.info(s"${sid} Node restarting ")
-            timers.cancel("data-sender")
-            timers.startTimerWithFixedDelay("data-sender", SendData, 40.milliseconds)
-            Behaviors.same   
+        Behaviors.withTimers { timers =>
 
-          case Stop =>
-            timers.cancel("data-sender")
-            idle
-          
-          case SendData =>
-            val ImgRead = generateMatrixList(100)
-            parentDrone ! Measurement(ImgRead, context.self)
-            msgCounter = msgCounter +1
-            Behaviors.same 
+            def running: Behavior[SensorEvent] = Behaviors.receiveMessage {
+                case Start =>
+                    Behaviors.same 
+                
+                case Restart =>
+                    context.log.info(s"Sensor $sid restarting")
+                    timers.cancel("data-sender")
+                    timers.startTimerWithFixedDelay("data-sender", SendData, 40.milliseconds)
+                    Behaviors.same   
 
+                case Stop =>
+                    timers.cancel("data-sender")
+                    idle
+                
+                case SendData =>
+                    // Generate observations within this drone's specific area
+                    val imgRead = generateMatrixListForArea(100, monitorMinX, monitorMaxX, monitorMinY, monitorMaxY)
+                    parentDrone ! Measurement(imgRead, context.self)
+                    // msgCounter = msgCounter + 1
+                    
+                    // Log every 10th message to avoid spam
+                    // if (msgCounter % 10 == 0) {
+                    //     context.log.debug(s"Sensor $sid sent observation batch #$msgCounter to drone")
+                    // }
+                    
+                    Behaviors.same 
+            }
+
+            def idle: Behavior[SensorEvent] = Behaviors.receiveMessage {
+                case Start =>
+                    timers.startTimerWithFixedDelay("data-sender", SendData, 40.milliseconds)
+                    running
+            }
+            
+            /*
+            * This is the initial state of the sensor
+            */
+            idle 
         }
-
-        def idle: Behavior[SensorEvent] = Behaviors.receiveMessage{
-          case Start =>
-            timers.startTimerWithFixedDelay("data-sender", SendData, 1.second)
-            running
-          
-        }
-        /*
-        * This is the initial state of the sensor
-        */
-        idle 
-      }
-
-    
-
-  }
+    }
 
 
-/**
- * A function to simulate the image we should read for a given section
-*/
+    def genMatrixForArea(minX: Int, maxX: Int, minY: Int, maxY: Int): Matrix2x2 = {
+        Matrix2x2(
+            Random.between(minX.toDouble, maxX.toDouble),
+            Random.between(minY.toDouble, maxY.toDouble)
+        )  
+    }
 
-  def genMatrix(): Matrix2x2 = {
-    Matrix2x2(
-      Random.between(0.0, 100.0),
-      Random.between(0.0, 100.0)
-    )  
-  }
 
-/**
- * This is a list of matrix, to simulate the number of target we get
-*/
-  def generateMatrixList(n: Int): MatrixList = {
-    MatrixList(List.fill(n)(genMatrix()))
-  }
-
-  // def generateData(mean: Double, std: Double): Double ={
-  //   val r = new Random()
-  //   mean + r.nextGaussian()*std
-  // }
+    def generateMatrixListForArea(n: Int, minX: Int, maxX: Int, minY: Int, maxY: Int): MatrixList = {
+        MatrixList(List.fill(n)(genMatrixForArea(minX, maxX, minY, maxY)))
+    }
 
 
 }

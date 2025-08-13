@@ -15,59 +15,82 @@ case class KalmanEstimate(dataPos: Matrix2x2, dataVel: Matrix2x2) extends Target
 // Measurement(data: Double, sender: ActorRef[SensorEvent])
 // case object 
 
-object TargetNode{
-
-    // A target will be created based on the measurements of the sensor from the. Maybe we can keep track of the targets created 
-    def apply(id: Int, dID:Int, parent: ActorRef[Event]): Behavior[SensorEvent] = Behaviors.setup{ context =>
+object TargetNode {
+    // A target will be created based on the measurements of the sensor from the drone
+    def apply(id: Int, dID: Int, parent: ActorRef[Event]): Behavior[SensorEvent] = Behaviors.setup { context =>
         val tid = id
         val parentDroneID = dID
         val parentAddr = parent
-        val estimator = context.spawn(KalmanFilterActor(),"estimator")
-        var state = Matrix2x2(0,0)
-        var isinitilized = false
-        val thresh = 0.5
+        val estimator = context.spawn(KalmanFilterActor(), "estimator")
+        var state = Matrix2x2(0, 0)
+        var isInitialized = false // Fixed typo: isinitilized -> isInitialized
+        val thresh = 2.0 // Threshold for target tracking distance validation
 
+        context.log.info(s"Target $tid has been created and assigned to drone $parentDroneID")
 
-        context.log.info(s" Target ${tid} has been created and assigned to drone ${parentDroneID} ")
-        // val estimator = context.spawn(KalmanEstimator(tid,context.self),"estimator")
         Behaviors.receiveMessage {
-            case TargetDataObs(id, data, sender) =>
-                context.log.info(s" Target ${tid} - D${parentDroneID} actor received the measurement")
-                if (!isinitilized) {
+            case TargetDataObs(obsId, data, sender) => // Added obsId parameter name
+                context.log.info(s"Target $tid - D$parentDroneID received measurement $obsId at (${data.x}, ${data.y})")
+                
+                if (!isInitialized) {
+                    // Initialize target state with first observation
                     state = data
-                    isinitilized = true
-                }
+                    isInitialized = true
+                    context.log.info(s"Target $tid initialized with position (${data.x}, ${data.y})")
+                    parentAddr ! TargetValid(dataID = obsId, targetID = tid)
 
-                val dist = TargetNode.calculateDistance(state, data)
-
-                if(dist < thresh) {
-                    // update state, maybe kalman state
-                    estimator ! Observe(data,1.0,context.self)
-                    /**
-                     * We should send the updated state of the target, to the drone. Or just the effective ID
-                    */
+                    // Send first observation to Kalman filter
+                    estimator ! Observe(data, 1.0, context.self)
                 } else {
-                    context.log.info(s" Target ${tid} - D${parentDroneID} actor received a measurement that is too far away from the current state. Ignoring it.")
+                    // Check if observation is close enough to current state
+                    val dist = calculateDistance(state, data)
+                    
+                    if (dist < thresh) {
+                        // Observation is within acceptable range - process it
+                        context.log.debug(s"Target $tid - Processing observation, distance: $dist")
+                        parentAddr ! TargetValid(dataID = obsId, targetID = tid)
+
+                        estimator ! Observe(data, 1.0, context.self)
+                    } else {
+                        // Observation is too far from expected state
+                        // context.log.warn(s"Target $tid - D$parentDroneID received measurement too far from current state. Distance: $dist > $thresh. Current: (${state.x}, ${state.y}), Observed: (${data.x}, ${data.y})")
+                        
+                        // Send error message to parent drone with dataID and targetID
+                        parentAddr ! TargetThresholdError(
+                            dataID = obsId,
+                            targetID = tid,
+                            distance = dist,
+                            expected = state,
+                            observed = data
+                        )
+                        
+                        // DO NOT process the observation - it's outside the threshold
+                        // The estimator will not receive this outlier observation
+                    }
                 }
-                // sender ! TargetAck
+                
                 Behaviors.same
 
             case KalmanEstimate(dataPos, dataVel) =>
-                context.log.info(s" Target ${tid} - D ${parentDroneID} expected next position is ${dataPos.x} and ${dataPos.y}")
+                // Update state with Kalman filter estimate
+                val previousState = state
                 state = dataPos
+                
+                context.log.info(s"Target $tid - D$parentDroneID state updated from (${previousState.x}, ${previousState.y}) to (${dataPos.x}, ${dataPos.y})")
+                context.log.info(s"Target $tid - D$parentDroneID velocity estimate: (${dataVel.x}, ${dataVel.y})")
+                
+                // Send acknowledgment to parent drone with updated position
                 parentAddr ! TargetAck(tid, dataPos.x, dataPos.y)
+                
+                Behaviors.same
+                
+            case unexpected =>
+                context.log.warn(s"Target $tid received unexpected message: $unexpected")
                 Behaviors.same
         }
-
-
-
-
     }
-        
-        def calculateDistance(pos1: Matrix2x2, pos2: Matrix2x2): Double = {
-            math.sqrt(math.pow(pos1.x - pos2.x, 2) + math.pow(pos1.y - pos2.y, 2))
-        }
-
-
- 
+    
+    def calculateDistance(pos1: Matrix2x2, pos2: Matrix2x2): Double = {
+        math.sqrt(math.pow(pos1.x - pos2.x, 2) + math.pow(pos1.y - pos2.y, 2))
+    }
 }

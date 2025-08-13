@@ -80,7 +80,7 @@ object KalmanFilterActor{
 
         val xUpd = DenseVector(xUpdPartial(0), xUpdPartial(1), vx, vy)
 
-        msg.replyTo ! KalmanEstimate(data= Matrix2x2(xUpd(0),xUpd(1)))
+        msg.replyTo ! KalmanEstimate(dataPos= Matrix2x2(xUpd(0),xUpd(1)), dataVel= Matrix2x2(xUpd(2),xUpd(3)))
 
         filtering(state.copy(x = xUpd, P = PUpd, zPrev = Some(z)))
 

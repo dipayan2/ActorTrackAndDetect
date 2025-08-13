@@ -10,6 +10,7 @@ import scala.concurrent.duration._
 import akka.actor.Actor
 import java.lang.annotation.Target
 import javax.sound.sampled.TargetDataLine
+import scala.collection.mutable.ListBuffer
 
 
 trait SensorEvent extends Event
@@ -33,7 +34,7 @@ object Drone {
             
             val neighbors =  scala.collection.mutable.ListBuffer[ActorRef[GraphCreate]]()
             val targets = scala.collection.mutable.ListBuffer[TargetData]()
-            val targetMap = scala.collection.mutable.Map[(Int,Int), List[Int]]()
+            val targetMap = scala.collection.mutable.Map[(Int,Int), ListBuffer[Int]]()
             var nCount = 0
             var tgtCount = 0
 
@@ -44,13 +45,28 @@ object Drone {
 
             def addTarget(tgt: TargetData): Unit ={
                 targets += tgt    
-                val updatedList = targetMap.getOrElse((tgt.rowX,tgt.rowY), List()) :+ tgtCount
+                val updatedList = targetMap.getOrElse((tgt.rowX,tgt.rowY), ListBuffer()) :+ tgtCount
                 targetMap.update((tgt.rowX,tgt.rowY), updatedList)
                 tgtCount = tgtCount + 1
                 // targets.size
             }
 
-            def targetBehaviour(data: MatrixList): Unit={
+            def updateTarget(tid: Int, obsX: Double, obsY: Double): Unit ={
+                // Update the target data
+                var currTgt = targets(tid)
+                var oldKey = (currTgt.rowX, currTgt.rowY)
+                var newKey = coordinateToGridIndex(obsX,obsY)
+                targets.update(tid, currTgt.copy(x = obsX, y = obsY, rowX = newKey._1, rowY = newKey._2))
+                for {
+                    fromList <- targetMap.get(oldKey)
+                } {
+                    fromList -= tid                  // remove
+                    targetMap.getOrElseUpdate(newKey, ListBuffer()) += tid // add
+                }
+
+            }
+
+            def targetBehaviour(data: MatrixList): Unit ={
 
                 for(idx <- data.matrices.indices){
                     // We go through the data
@@ -59,12 +75,13 @@ object Drone {
 
                     if(targetMap.contains((rowX,rowY))){
                         for (targIdx <- targetMap((rowX,rowY)) ){
-                            targets(targIdx).ref ! TargetData(data.matrices(idx), context.self)
+                            targets(targIdx).ref ! TargetDataObs(idx, data.matrices(idx), context.self)
                         }
                     } 
                     else{
                         val tref = context.spawn(TargetNode(tgtCount,myID, context.self),s"target-node-$tgtCount")
                         val tdata = TargetData(tgtCount,tref,obsX, obsY,rowX,rowY)
+                        tref ! TargetDataObs(idx,data.matrices(idx), context.self)
                         addTarget(tdata)
                     }
                 }
@@ -120,8 +137,9 @@ object Drone {
                             
                             Behaviors.same 
 
-                        case TargetAck =>
-                            context.log.info(s"Drone ${myID} received a target ACK")
+                        case TargetAck(id, obsX, obsY) =>
+                            context.log.info(s"Drone ${myID} received a target ACK for target $id at ($obsX, $obsY)")
+                            updateTarget(id, obsX, obsY)
                             Behaviors.same
                     }
                     // Set up a behavior receive code here

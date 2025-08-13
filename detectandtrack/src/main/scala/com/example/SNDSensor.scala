@@ -87,8 +87,8 @@ object Sensor{
 
   def genMatrix(): Matrix2x2 = {
     Matrix2x2(
-      Random.between(0.0, 10.0),
-      Random.between(0.0, 10.0)
+      Random.between(0.0, 100.0),
+      Random.between(0.0, 100.0)
     )  
   }
 

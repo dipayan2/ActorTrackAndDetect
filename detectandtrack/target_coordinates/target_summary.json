@@ -1,0 +1,8 @@
+{
+  "total_frames": 2000,
+  "threshold": 0.05,
+  "avg_targets_per_frame": 114.6385,
+  "max_targets_per_frame": 191,
+  "min_targets_per_frame": 65,
+  "total_target_detections": 229277
+}

@@ -51,14 +51,18 @@ def add_target(X, W, N, T, llx, lly, lsx, lsy, lci, lts):
     # Pick random time to force target to be at some location in frame
     t0 = T * np.random.uniform(0, 1)
 
-    # Motion parameters
-    ax = llx * 0.5 * (cx[0] + 1) * random.choice([-1, 1])  # x linear movement
-    ay = lly * 0.5 * (cy[0] + 1) * random.choice([-1, 1])  # y linear movement
+    # Motion parameters - constrained for velocity < 0.1
+    max_velocity = 0.1
+    
+    # Linear velocity components (pixels per frame)
+    ax = llx * max_velocity * 0.3 * (cx[0] + 1) * random.choice([-1, 1])  # reduced from 0.5
+    ay = lly * max_velocity * 0.3 * (cy[0] + 1) * random.choice([-1, 1])  # reduced from 0.5
 
-    bx = (cx[2] + 1) * 7
-    fx = cx[3] / bx  # x frequency, x sin amplitude
-    by = (cy[2] + 1) * 7
-    fy = cy[3] / by  # y frequency, y sin amplitude
+    # Sinusoidal motion parameters - reduced amplitude and frequency
+    bx = max_velocity * 0.4 * (cx[2] + 1)  # reduced amplitude
+    fx = cx[3] / 100  # reduced frequency (was cx[3]/bx with larger bx)
+    by = max_velocity * 0.4 * (cy[2] + 1)  # reduced amplitude  
+    fy = cy[3] / 100  # reduced frequency
 
     if lci == 1: 
         fy = fx  # forcing the motion to be elliptical
@@ -69,10 +73,22 @@ def add_target(X, W, N, T, llx, lly, lsx, lsy, lci, lts):
     my = v * N / u + ((u - 2 * v) / u) * N * cy[1] - (ay * t0 + by * np.sin(fy * t0))
 
     # Generate target positions for each time frame
+    positions = []
+    velocities = []
+    
     for t in range(T):
         xp = mx + (ax * t + bx * np.cos(fx * t))  # target x location at time t
         yp = my + (ay * t + by * np.sin(fy * t))  # target y location at time t
-
+        
+        positions.append((xp, yp))
+        
+        # Calculate instantaneous velocity for verification
+        if t > 0:
+            vx = positions[t][0] - positions[t-1][0]  # velocity in x
+            vy = positions[t][1] - positions[t-1][1]  # velocity in y
+            speed = np.sqrt(vx**2 + vy**2)
+            velocities.append(speed)
+        
         if lts == 1:  # gaussian target
             mm1 = np.exp(-cs * (x - xp)**2 - cs * (y - yp)**2)
             mm1[mm1 < 0.1] = 0
@@ -87,6 +103,15 @@ def add_target(X, W, N, T, llx, lly, lsx, lsy, lci, lts):
             mm2 = 1 - mm1
             Zb[t] = mm2 * X[t] + mm1 * mmat
             Zt[t] = mm2 * W[t] + mm1 * mmat 
+    
+    # Verify velocity constraint
+    if velocities:
+        max_velocity_actual = max(velocities)
+        avg_velocity = np.mean(velocities)
+        if max_velocity_actual > 0.1:
+            print(f"Warning: Target exceeded velocity limit! Max: {max_velocity_actual:.3f}, Avg: {avg_velocity:.3f}")
+        else:
+            print(f"Target velocity OK - Max: {max_velocity_actual:.3f}, Avg: {avg_velocity:.3f}")
             
     return Zb, Zt
 
@@ -306,36 +331,135 @@ def export_target_coordinates(simulation_data, output_dir="target_coordinates",
     print(f"Target coordinates export complete!")
     print(f"Summary saved to {summary_file}")
 
+def generate_target_trajectories(N=200, T=200, K=15):
+    """
+    Generate just the target trajectories without creating full frame arrays.
+    
+    Returns:
+        Dictionary mapping frame_number -> list of (x, y, target_id) positions
+    """
+    
+    print(f"Generating target trajectories: {K} targets over {T} frames")
+    
+    # Store all trajectories: frame -> [(x, y, target_id), ...]
+    frame_targets = {frame: [] for frame in range(T)}
+    
+    for target_id in range(K):
+        print(f"  Generating trajectory for target {target_id+1}/{K}")
+        
+        # Generate motion parameters for this target
+        check = 0 
+        while check == 0:
+            v = np.random.randint(0, 2, size=6)
+            check = np.sum(v[0:3])
+        
+        llx, lly, lsx, lsy, lci, lts = v
+        
+        # Random parameters for motion
+        cx = np.random.uniform(0, 1, size=4)
+        cy = np.random.uniform(0, 1, size=4)
+        
+        # Motion parameters - constrained for velocity < 0.1
+        max_velocity = 0.1
+        ax = llx * max_velocity * 0.3 * (cx[0] + 1) * random.choice([-1, 1])
+        ay = lly * max_velocity * 0.3 * (cy[0] + 1) * random.choice([-1, 1])
+        
+        bx = max_velocity * 0.4 * (cx[2] + 1)
+        fx = cx[3] / 100
+        by = max_velocity * 0.4 * (cy[2] + 1)
+        fy = cy[3] / 100
+        
+        if lci == 1: 
+            fy = fx
+        
+        # Calculate center position
+        t0 = T * np.random.uniform(0, 1)
+        u = 12
+        v_pos = 0
+        mx = v_pos * N / u + ((u - 2 * v_pos) / u) * N * cx[1] - (ax * t0 + bx * np.cos(fx * t0))
+        my = v_pos * N / u + ((u - 2 * v_pos) / u) * N * cy[1] - (ay * t0 + by * np.sin(fy * t0))
+        
+        # Generate positions for each frame
+        velocities = []
+        prev_pos = None
+        
+        for t in range(T):
+            xp = mx + (ax * t + bx * np.cos(fx * t))
+            yp = my + (ay * t + by * np.sin(fy * t))
+            
+            # Keep targets within bounds
+            xp = max(0, min(N-1, xp))
+            yp = max(0, min(N-1, yp))
+            
+            # Store position for this frame
+            frame_targets[t].append((xp, yp, target_id))
+            
+            # Calculate velocity for verification
+            if prev_pos is not None:
+                vx = xp - prev_pos[0]
+                vy = yp - prev_pos[1]
+                speed = np.sqrt(vx**2 + vy**2)
+                velocities.append(speed)
+            
+            prev_pos = (xp, yp)
+        
+        # Verify velocity constraint
+        if velocities:
+            max_vel = max(velocities)
+            avg_vel = np.mean(velocities)
+            if max_vel > 0.1:
+                print(f"    Warning: Target {target_id} exceeded velocity! Max: {max_vel:.3f}")
+            else:
+                print(f"    Target {target_id} velocity OK - Max: {max_vel:.3f}, Avg: {avg_vel:.3f}")
+    
+    print("Target trajectory generation complete!")
+    return frame_targets
+
+def export_trajectory_data(frame_targets, output_dir="trajectory_data"):
+    """
+    Export trajectory data in simple format for Scala sensor.
+    """
+    Path(output_dir).mkdir(exist_ok=True)
+    
+    # Export as simple text files: frame_<t>.txt with "x,y,target_id" per line
+    for frame_num, targets in frame_targets.items():
+        filename = f"{output_dir}/frame_{frame_num}.txt"
+        with open(filename, 'w') as f:
+            f.write("x,y,target_id\n")  # header
+            for x, y, target_id in targets:
+                f.write(f"{x:.3f},{y:.3f},{target_id}\n")
+    
+    # Export metadata
+    metadata = {
+        'total_frames': len(frame_targets),
+        'targets_per_frame': {f: len(targets) for f, targets in frame_targets.items()},
+        'total_targets': len(set(target_id for targets in frame_targets.values() for _, _, target_id in targets)),
+        'format': 'x,y,target_id per line'
+    }
+    
+    import json
+    with open(f"{output_dir}/metadata.json", 'w') as f:
+        json.dump(metadata, f, indent=2)
+    
+    print(f"Trajectory data exported to {output_dir}/")
+    print(f"Format: frame_<num>.txt with x,y,target_id per line")
+
 def main():
-    """Main function to generate and export simulation data."""
+    """Main function to generate and export trajectory data."""
     
-    print("=== Target Tracking Simulation Generator ===\n")
+    print("=== Target Trajectory Generator ===\n")
     
-    # Generate simulation
-    simulation = generate_complete_simulation(N=100, T=2000, K=100, sig=0.1)
+    # Generate just trajectories (much faster than full simulation)
+    trajectories = generate_target_trajectories(N=100, T=100, K=5000)
     
-    print("\n=== Exporting Data for Scala Sensors ===\n")
-    
-    # Export target mask data (most useful for sensors)
-    export_simulation_to_csv(simulation, "simulation_data", "W")
-    
-    # Export target coordinates (more efficient alternative)
-    export_target_coordinates(simulation, "target_coordinates", "W", threshold=0.05)
-    
-    # Optionally export other data types
-    print("\nOptional: Export other data types? (y/n)")
-    export_others = input().lower().strip()
-    
-    if export_others == 'y':
-        export_simulation_to_csv(simulation, "simulation_targets_background", "X")
-        export_simulation_to_csv(simulation, "simulation_noisy", "Y")
-        print("Additional data types exported!")
+    # Export in simple format
+    export_trajectory_data(trajectories, "trajectory_data")
     
     print("\n=== Export Complete ===")
-    print("\nTo use with your Scala sensors:")
-    print('1. Update sensor constructor: Sensor(id, drone, minX, maxX, minY, maxY, "simulation_data")')
-    print('2. Make sure the simulation_data directory is accessible to your Scala application')
-    print('3. Each sensor will automatically filter for its monitoring area')
+    print("To use with Scala sensors:")
+    print('1. Update sensor constructor with: "trajectory_data"')
+    print('2. Each file contains target positions for that frame')
+    print('3. Sensors filter by their monitoring area')
 
 if __name__ == "__main__":
     main()

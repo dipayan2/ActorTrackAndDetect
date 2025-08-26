@@ -177,10 +177,10 @@ object Drone {
             if (frameCount > 1) { // Skip first frame since no previous data
                 val validationRate = if (previousFrameTotal > 0) {
                     (previousFrameValid.toDouble / previousFrameTotal.toDouble) * 100.0
-                } else 0.0
+                } else -1.0
                 
                 context.log.info(s"[SANDIA] Frame ${frameCount-1}, Drone ${myID}: Total=${previousFrameTotal}, " +
-                            s"InvalidRate=${validationRate.formatted("%.1f")}%, Active=${targets.length}")
+                            s"VnvalidRate=${validationRate.formatted("%.1f")}%, Active=${targets.length}")
             }
             // Handle unvalidated observations from previous calls
             val unvalidatedObservations = pendingObservations.filterNot { case (dataID, _) =>
@@ -326,7 +326,7 @@ object Drone {
         def startNode: Behavior[Event] = Behaviors.setup { context =>
             context.log.info(s"$myID -- Node started")
 
-            val simulationDataPath = "/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/target_coordinates" // Path to simulation data file
+            val simulationDataPath = "/Users/dmukherjee/UIUC/SandiaTrack/ActorTrackAndDetect/detectandtrack/trajectory_data" // Path to simulation data file
             /**
              * Starting the timed sensor node -- this will supply the information to the drone
              * Pass the drone's monitoring area to the sensor

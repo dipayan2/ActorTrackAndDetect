@@ -57,18 +57,19 @@ object Sensor {
 
                // Simulation state
         var currentFrame = 0
-        var totalFrames = 200 // Based on your notebook: T = 200
-        var simulationData: Option[Array[Array[Array[Double]]]] = None // [T][N][N] format
+        var totalFrames = 100 // Based on your notebook: T = 200
+        var trajectoryData: Option[Map[Int, List[(Double, Double, Int)]]] = None
         // Load simulation data on startup
         loadSimulationData(simDataPath) match {
             case Success(data) =>
-                simulationData = Some(data)
-                totalFrames = data.length
-                context.log.info(s"Sensor $sid loaded simulation data: ${totalFrames} frames")
+                trajectoryData = Some(data)
+                totalFrames = data.keys.max + 1
+                context.log.info(s" Sensor $sid loaded trajectory data: ${totalFrames} frames")
             case Failure(exception) =>
-                context.log.error(s"Sensor $sid failed to load simulation data: ${exception.getMessage}")
-                context.log.info(s"Sensor $sid falling back to random generation")
+                context.log.error(s" Sensor $sid failed to load trajectory data: ${exception.getMessage}")
+                context.log.info(s" Sensor $sid falling back to random generation")
         }
+
 
 
         Behaviors.withTimers { timers =>
@@ -80,7 +81,7 @@ object Sensor {
                 case Restart =>
                     context.log.info(s"Sensor $sid restarting")
                     timers.cancel("data-sender")
-                    timers.startTimerWithFixedDelay("data-sender", SendData, 40.milliseconds)
+                    timers.startTimerWithFixedDelay("data-sender", SendData, 100.milliseconds)
                     Behaviors.same   
 
                 case Stop =>
@@ -90,18 +91,23 @@ object Sensor {
                 case SendData =>
                     // Generate observations within this drone's specific area
                     // Get current frame data from simulation or generate fallback
-                    val gridData = simulationData match {
-                        case Some(simData) if currentFrame < totalFrames =>
-                            // Extract targets from simulation for current frame
-                            extractTargetsFromSimulation(simData, currentFrame, monitorMinX, monitorMaxX, monitorMinY, monitorMaxY)
-                        case Some(simData) =>
-                            // Simulation finished, loop back to start
-                            currentFrame = 0
-                            extractTargetsFromSimulation(simData, currentFrame, monitorMinX, monitorMaxX, monitorMinY, monitorMaxY)
+                    // Get current frame data from trajectory or generate fallback
+                    val gridData = trajectoryData match {
+                        case Some(trajectories) if trajectories.contains(currentFrame) =>
+                            // Extract targets from trajectory data for current frame
+                            extractTargetsFromTrajectory(trajectories, currentFrame, monitorMinX, monitorMaxX, monitorMinY, monitorMaxY)
+                        case Some(trajectories) =>
+                            // Frame not found, loop back to start
+                            currentFrame = (currentFrame+1) % totalFrames
+                            if (trajectories.contains(currentFrame)) {
+                                extractTargetsFromTrajectory(trajectories, currentFrame, monitorMinX, monitorMaxX, monitorMinY, monitorMaxY)
+                            } else {
+                                context.log.warn(s" Sensor $sid no data for frame $currentFrame, using random fallback")
+                                generateRandomGridData(50, monitorMinX, monitorMaxX, monitorMinY, monitorMaxY) // Reduced from 1000
+                            }
                         case None =>
                             // Fallback to random generation
-                            context.log.debug(s"Sensor $sid using random fallback data")
-                            generateGridTargetDataForArea(1000, monitorMinX, monitorMaxX, monitorMinY, monitorMaxY)
+                            generateRandomGridData(50, monitorMinX, monitorMaxX, monitorMinY, monitorMaxY) // Reduced from 1000
                     }
                     
                     // Send data to drone
@@ -115,6 +121,7 @@ object Sensor {
                     }
                     
                     Behaviors.same 
+
             }
 
             def idle: Behavior[SensorEvent] = Behaviors.receiveMessage {
@@ -132,59 +139,85 @@ object Sensor {
 
 
 
-        // Helper function to load simulation data from files
-        def loadSimulationData(dataPath: String): Try[Array[Array[Array[Double]]]] = Try {
-            // Try to load from numpy-style format files or CSV
-            // This assumes you've saved your simulation arrays W, X, Y, etc. to files
-            
-            // For now, implement a simple CSV-based loader
-            // You would save each frame as "frame_<t>.csv" from your Python simulation
-            val frameFiles = (0 until 200).map(t => s"$dataPath/frame_$t.csv")
-            
-            val frames = frameFiles.map { filename =>
-                val lines = Files.readAllLines(Paths.get(filename)).toArray
-                lines.map(line => 
-                    line.toString.split(",").map(_.trim.toDouble)
-                ).toArray
-            }.toArray
-            
-            frames
+  // Helper function to load simulation data from files
+    def loadSimulationData(dataPath: String): Try[Map[Int, List[(Double, Double, Int)]]] = Try {
+        import java.io.File
+        import scala.io.Source
+        
+        // context.log.info(s"Loading trajectory data from: $dataPath")
+        
+        val dir = new File(dataPath)
+        if (!dir.exists()) {
+            throw new Exception(s"Directory does not exist: $dataPath")
         }
-
-        // Extract targets from simulation data for current frame within sensor's area
-        def extractTargetsFromSimulation(simulationData: Array[Array[Array[Double]]], 
-                                    frameIndex: Int, minX: Int, maxX: Int, minY: Int, maxY: Int): GridTargetData = {
-            
-            val frameData = simulationData(frameIndex)
-            val N = frameData.length // Should be 200 from your simulation
-            
-            val targets = scala.collection.mutable.ListBuffer[Matrix2x2]()
-            
-            // Scan the simulation frame for non-zero (target) pixels within our sensor area
-            for (row <- 0 until N; col <- 0 until N) {
-                val intensity = frameData(row)(col)
-                
-                // Convert grid indices back to world coordinates (assuming 1:1 mapping for simplicity)
-                val worldX = col.toDouble
-                val worldY = row.toDouble
-                
-                // Check if this target is within our sensor's monitoring area and has significant intensity
-                if (worldX >= minX && worldX <= maxX && 
-                    worldY >= minY && worldY <= maxY && 
-                    math.abs(intensity) > 0.05) { // Threshold for detecting targets
-                    
-                    targets += Matrix2x2(worldX, worldY)
+        
+        // Find all frame files
+        val frameFiles = dir.listFiles()
+            .filter(_.getName.matches("frame_\\d+\\.txt"))
+            .sortBy(f => f.getName.replace("frame_", "").replace(".txt", "").toInt)
+        
+        // context.log.info(s"Found ${frameFiles.length} trajectory files")
+        
+        if (frameFiles.isEmpty) {
+            throw new Exception(s"No frame trajectory files found in $dataPath")
+        }
+        
+        val trajectoryMap = scala.collection.mutable.Map[Int, List[(Double, Double, Int)]]()
+        
+        frameFiles.foreach { file =>
+            val frameNumber = file.getName.replace("frame_", "").replace(".txt", "").toInt
+            val source = Source.fromFile(file)
+            try {
+                val lines = source.getLines().toList
+                val targets = lines.drop(1).map { line => // Skip header
+                    val parts = line.split(",")
+                    if (parts.length == 3) {
+                        (parts(0).trim.toDouble, parts(1).trim.toDouble, parts(2).trim.toInt)
+                    } else {
+                        throw new Exception(s"Invalid line format in ${file.getName}: $line")
+                    }
                 }
+                trajectoryMap(frameNumber) = targets
+            } finally {
+                source.close()
             }
-            
-            // Group by grid coordinates and return as dictionary format
-            val groupedByGrid = targets.toList.groupBy { matrix =>
-                coordinateToGridIndex(matrix.x, matrix.y)
-            }
-            
-            GridTargetData(groupedByGrid.toMap)
         }
+        
+        // context.log.info(s"[SANDIA] Successfully loaded trajectories for ${trajectoryMap.size} frames")
+        trajectoryMap.toMap
+    }
 
+    // Extract targets from trajectory data for current frame within sensor's area
+    def extractTargetsFromTrajectory(trajectoryData: Map[Int, List[(Double, Double, Int)]], 
+                                   frameIndex: Int, minX: Int, maxX: Int, minY: Int, maxY: Int): GridTargetData = {
+        
+        val frameTargets = trajectoryData.getOrElse(frameIndex, List.empty)
+        
+        // Filter targets within this sensor's monitoring area
+        val targetsInArea = frameTargets.filter { case (x, y, targetId) =>
+            x >= minX && x <= maxX && y >= minY && y <= maxY
+        }
+        
+        // Convert to Matrix2x2 format
+        val matrices = targetsInArea.map { case (x, y, _) =>
+            Matrix2x2(x, y)
+        }
+        
+        // Group by grid coordinates
+        val groupedByGrid = matrices.groupBy { matrix =>
+            coordinateToGridIndex(matrix.x, matrix.y)
+        }
+        
+        GridTargetData(groupedByGrid)
+    }
+    // Fallback random generation (same as before)
+    def generateRandomGridData(n: Int, minX: Int, maxX: Int, minY: Int, maxY: Int): GridTargetData = {
+        val matrices = List.fill(n)(genMatrixForArea(minX, maxX, minY, maxY))
+        val groupedByGrid = matrices.groupBy { matrix =>
+            coordinateToGridIndex(matrix.x, matrix.y)
+        }
+        GridTargetData(groupedByGrid)
+    }
 
     def genMatrixForArea(minX: Int, maxX: Int, minY: Int, maxY: Int): Matrix2x2 = {
         Matrix2x2(
@@ -194,7 +227,7 @@ object Sensor {
     }
 
     // Helper function to convert coordinates to grid indices
-    def coordinateToGridIndex(x: Double, y: Double, cellWidth: Double = 1.0, cellHeight: Double = 1.0): (Int, Int) = {
+    def coordinateToGridIndex(x: Double, y: Double, cellWidth: Double = 2.0, cellHeight: Double = 2.0): (Int, Int) = {
         val column = (x / cellWidth).toInt
         val row = (y / cellHeight).toInt
         (row, column)

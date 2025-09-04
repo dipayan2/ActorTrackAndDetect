@@ -444,16 +444,170 @@ def export_trajectory_data(frame_targets, output_dir="trajectory_data"):
     print(f"Trajectory data exported to {output_dir}/")
     print(f"Format: frame_<num>.txt with x,y,target_id per line")
 
+
+
+def generate_target_trajectories_1000x1000_slow(N=1000, T=100, K=1000):
+    """
+    Generate target trajectories for 1000x1000 grid with ORIGINAL velocity values.
+    
+    Args:
+        N: Grid size (1000)
+        T: Number of frames (100)  
+        K: Number of targets (1000)
+    
+    Returns:
+        Dictionary mapping frame_number -> list of (x, y, target_id) positions
+    """
+    
+    print(f"Generating 1000x1000 trajectories with ORIGINAL velocities: {K} targets over {T} frames")
+    
+    # Store all trajectories: frame -> [(x, y, target_id), ...]
+    frame_targets = {frame: [] for frame in range(T)}
+    
+    for target_id in range(K):
+        if target_id % 100 == 0:  # Progress logging
+            print(f"  Generating trajectory for target {target_id+1}/{K}")
+        
+        # Generate motion parameters for this target
+        check = 0 
+        while check == 0:
+            v = np.random.randint(0, 2, size=6)
+            check = np.sum(v[0:3])
+        
+        llx, lly, lsx, lsy, lci, lts = v
+        
+        # Random parameters for motion
+        cx = np.random.uniform(0, 1, size=4)
+        cy = np.random.uniform(0, 1, size=4)
+        
+        # KEEP ORIGINAL: Same velocity as 100x100 system
+        max_velocity = 0.1  # UNCHANGED from original
+        ax = llx * max_velocity * 0.3 * (cx[0] + 1) * random.choice([-1, 1])  # ~±0.03 to ±0.06
+        ay = lly * max_velocity * 0.3 * (cy[0] + 1) * random.choice([-1, 1])  # ~±0.03 to ±0.06
+        
+        bx = max_velocity * 0.4 * (cx[2] + 1)  # 0.04 to 0.08 amplitude
+        fx = cx[3] / 100  # UNCHANGED frequency
+        by = max_velocity * 0.4 * (cy[2] + 1)  # 0.04 to 0.08 amplitude
+        fy = cy[3] / 100  # UNCHANGED frequency
+        
+        if lci == 1: 
+            fy = fx
+        
+        # SCALED: Position parameters for 1000x1000 grid (but same motion)
+        t0 = T * np.random.uniform(0, 1)
+        u = 12
+        v_pos = 0
+        mx = v_pos * N / u + ((u - 2 * v_pos) / u) * N * cx[1] - (ax * t0 + bx * np.cos(fx * t0))
+        my = v_pos * N / u + ((u - 2 * v_pos) / u) * N * cy[1] - (ay * t0 + by * np.sin(fy * t0))
+        
+        # Generate positions for each frame
+        velocities = []
+        prev_pos = None
+        
+        for t in range(T):
+            xp = mx + (ax * t + bx * np.cos(fx * t))
+            yp = my + (ay * t + by * np.sin(fy * t))
+            
+            # Keep targets within 1000x1000 bounds
+            xp = max(0, min(N-1, xp))
+            yp = max(0, min(N-1, yp))
+            
+            # Store position for this frame
+            frame_targets[t].append((xp, yp, target_id))
+            
+            # Calculate velocity for verification
+            if prev_pos is not None:
+                vx = xp - prev_pos[0]
+                vy = yp - prev_pos[1]
+                speed = np.sqrt(vx**2 + vy**2)
+                velocities.append(speed)
+            
+            prev_pos = (xp, yp)
+        
+        # Verify velocity constraint (should be same as original)
+        if velocities and target_id % 200 == 0:  # Log every 200th target
+            max_vel = max(velocities)
+            avg_vel = np.mean(velocities)
+            if max_vel > 0.1:  # Original threshold
+                print(f"    Warning: Target {target_id} exceeded velocity! Max: {max_vel:.3f}")
+            else:
+                print(f"    Target {target_id} velocity OK - Max: {max_vel:.3f}, Avg: {avg_vel:.3f}")
+    
+    print("Target trajectory generation complete!")
+    
+    # Log statistics
+    target_counts_per_frame = [len(targets) for targets in frame_targets.values()]
+    print(f"Targets per frame - Min: {min(target_counts_per_frame)}, Max: {max(target_counts_per_frame)}, Avg: {np.mean(target_counts_per_frame):.1f}")
+    
+    return frame_targets
+
+def export_trajectory_data_1000x1000_slow(frame_targets, output_dir="trajectory_data_1000x1000_slow"):
+    """
+    Export trajectory data for 1000x1000 grid with original velocities.
+    """
+    Path(output_dir).mkdir(exist_ok=True)
+    
+    # Export as simple text files: frame_<t>.txt with "x,y,target_id" per line
+    for frame_num, targets in frame_targets.items():
+        filename = f"{output_dir}/frame_{frame_num}.txt"
+        with open(filename, 'w') as f:
+            f.write("x,y,target_id\n")  # header
+            for x, y, target_id in targets:
+                f.write(f"{x:.3f},{y:.3f},{target_id}\n")
+    
+    # Export metadata
+    metadata = {
+        'grid_size': 1000,
+        'total_frames': len(frame_targets),
+        'targets_per_frame_stats': {
+            'min': min(len(targets) for targets in frame_targets.values()),
+            'max': max(len(targets) for targets in frame_targets.values()),
+            'avg': np.mean([len(targets) for targets in frame_targets.values()])
+        },
+        'total_unique_targets': len(set(target_id for targets in frame_targets.values() for _, _, target_id in targets)),
+        'motion_parameters': {
+            'max_velocity': 0.1,  # UNCHANGED from original
+            'velocity_range': '0.03 to 0.06 pixels/frame',
+            'sinusoidal_amplitude': '0.04 to 0.08 pixels',
+            'frequency_range': '0 to 0.01',
+            'grid_cell_size': '2x2 units (same as original)',
+            'sampling_interval': '100ms'
+        },
+        'drone_coverage': {
+            'num_drones': 16,
+            'drone_area': '300x300 each', 
+            'overlap': '50 units',
+            'expected_targets_per_drone': 'varies by density'
+        },
+        'format': 'x,y,target_id per line'
+    }
+    
+    import json
+    with open(f"{output_dir}/metadata.json", 'w') as f:
+        json.dump(metadata, f, indent=2)
+    
+    print(f"SLOW velocity trajectory data exported to {output_dir}/")
+    print(f"Format: frame_<num>.txt with x,y,target_id per line")
+    print(f"Grid: 1000x1000, Frames: {len(frame_targets)}, Targets: {metadata['total_unique_targets']}")
+    print(f"Velocities: UNCHANGED from original (max 0.1 pixels/frame)")
+
+
 def main():
     """Main function to generate and export trajectory data."""
     
     print("=== Target Trajectory Generator ===\n")
     
     # Generate just trajectories (much faster than full simulation)
-    trajectories = generate_target_trajectories(N=100, T=100, K=5000)
+    # trajectories = generate_target_trajectories(N=100, T=100, K=50)
+    
+    # # Export in simple format
+    # export_trajectory_data(trajectories, "trajectory_data")
+
+        # Generate trajectories for 1000x1000 grid with ORIGINAL velocities
+    trajectories = generate_target_trajectories_1000x1000_slow(N=1000, T=100, K=7000)
     
     # Export in simple format
-    export_trajectory_data(trajectories, "trajectory_data")
+    export_trajectory_data_1000x1000_slow(trajectories, "trajectory_data")
     
     print("\n=== Export Complete ===")
     print("To use with Scala sensors:")

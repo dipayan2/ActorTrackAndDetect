@@ -1,0 +1,25 @@
+{
+  "grid_size": 1000,
+  "total_frames": 100,
+  "targets_per_frame_stats": {
+    "min": 7000,
+    "max": 7000,
+    "avg": 7000.0
+  },
+  "total_unique_targets": 7000,
+  "motion_parameters": {
+    "max_velocity": 0.1,
+    "velocity_range": "0.03 to 0.06 pixels/frame",
+    "sinusoidal_amplitude": "0.04 to 0.08 pixels",
+    "frequency_range": "0 to 0.01",
+    "grid_cell_size": "2x2 units (same as original)",
+    "sampling_interval": "100ms"
+  },
+  "drone_coverage": {
+    "num_drones": 16,
+    "drone_area": "300x300 each",
+    "overlap": "50 units",
+    "expected_targets_per_drone": "varies by density"
+  },
+  "format": "x,y,target_id per line"
+}

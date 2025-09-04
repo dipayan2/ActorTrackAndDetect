@@ -40,7 +40,7 @@ object DroneSystem {
             val isLeader = droneId == 0  // First drone is leader
             
             val drone = context.spawn(
-                Drone(droneId, xpos = xPos, ypos = yPos, xrange = 300, yrange = 300, isLeader = isLeader),
+                Drone(droneId, xpos = xPos, ypos = yPos, xrange = 30, yrange = 30, isLeader = isLeader),
                 s"drone$droneId"
             )
             drones += drone

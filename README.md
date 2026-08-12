@@ -1,5 +1,6 @@
 # ActorTrackAndDetect
-Chat with Claude: gaps in research
+Chat with Claude: 
+## Gaps in research
 
 Mapping each gap to established literature that tackles it directly:
 
